@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: b181cc9e19a766d48893e1a9d2ff5662
+  productGUID: 59172cf6c8532b447bb767f8d8f81b1d
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: CapstoneProject
+  productName: The Fall Of Kronk
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -77,7 +77,7 @@ PlayerSettings:
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
-  androidPredictiveBackSupport: 1
+  androidPredictiveBackSupport: 0
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 1
@@ -682,14 +682,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: CapstoneProject
+  metroPackageName: M4-W4-ProgettoFineModulo3
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: CapstoneProject
+  metroApplicationDescription: M4-W4-ProgettoFineModulo3
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -759,10 +759,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 8c5db169-cbfc-46d9-a304-cf5f9bc37d06
+  cloudProjectId: 5fddb23f-57ce-48ce-8a59-e7b3354d7e94
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: CapstoneProject
+  projectName: M4-W4-ProgettoFineModulo3
   organizationId: frapocotelosviluppo
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
