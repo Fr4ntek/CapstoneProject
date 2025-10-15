@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1082438286428453750}
   - component: {fileID: 8151258028913224219}
   - component: {fileID: 6266013154548599392}
+  - component: {fileID: 8710771131970135497}
   m_Layer: 0
   m_Name: trap-spikes-large
   m_TagString: Untagged
@@ -106,6 +107,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8710771131970135497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5898267706575931371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a23e5ce8f270624a8b81fdbe5f30fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _startUp: 0
 --- !u!1 &7165818793339914494
 GameObject:
   m_ObjectHideFlags: 0
