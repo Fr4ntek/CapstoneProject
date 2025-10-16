@@ -11,9 +11,11 @@ public class LaserPatrol : MonoBehaviour
     {
         if (_waypoints.Length == 0) return;
 
-        Vector3[] path = new Vector3[_waypoints.Length];
+        Vector3[] path = new Vector3[_waypoints.Length + 1];
         for (int i = 0; i < _waypoints.Length; i++)
             path[i] = _waypoints[i].position;
+
+        path[_waypoints.Length] = _waypoints[0].position;
 
         transform.DOPath(path, _duration, PathType.Linear, PathMode.Full3D)
             .SetEase(Ease.Linear)
