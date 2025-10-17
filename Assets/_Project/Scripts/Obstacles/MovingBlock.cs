@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MovingBlock : MonoBehaviour
 {
-    [Header("Patrol Settings")]
-    [SerializeField] private Transform[] _waypoints;
-    [SerializeField] private AIState _currentState;
-
     [Header("View Settings")]
     [SerializeField] private Transform _enemy;
     [SerializeField] private float _viewAngle = 45f;
     [SerializeField] private float _sightDistance = 15f;
     [SerializeField] private LayerMask _whatIsObstacle;
     [SerializeField] private int _subdivisions = 12;
+
+    [Header("Patrol Settings")]
+    [SerializeField] private Transform[] _waypoints;
+    [SerializeField] private AIState _currentState;
+
+    [Header("Search Settings")]
+    [SerializeField] private float _searchDuration = 3f;
+    private float _searchTimer = 0f;
 
     [Header("Damage Settings")]
     [SerializeField] private int _damage = 10;
@@ -58,8 +63,14 @@ public class MovingBlock : MonoBehaviour
             case AIState.Chasing:
                 ChaseState();
                 break;
+            case AIState.Attacking:
+                AttackState();
+                break;
             case AIState.ReturningToPost:
                 ReturnToPostState();
+                break;
+            case AIState.Searching:
+                SearchState();
                 break;
         }
 
@@ -85,6 +96,11 @@ public class MovingBlock : MonoBehaviour
                 _agent.isStopped = false;
                 break;
 
+            case AIState.Searching:
+                _agent.isStopped = true;
+                _searchTimer = 0f;
+                break;
+
             case AIState.ReturningToPost:
                 _agent.isStopped = false;
                 _agent.SetDestination(_startPosition);
@@ -92,29 +108,11 @@ public class MovingBlock : MonoBehaviour
         }
     }
 
+    // STATES
+    // Idle state
     private void IdleState()
     {
        PerformPatrol();
-    }
-
-    private void ChaseState()
-    {
-        _agent.SetDestination(_target.position);
-
-        if (!CanSeePlayer())
-        {
-            _lineRenderer.startColor = Color.white;
-            _lineRenderer.endColor = Color.white;
-            ChangeState(AIState.ReturningToPost);
-        }
-    }
-
-    private void ReturnToPostState()
-    {
-        if (!_agent.pathPending && _agent.remainingDistance < 0.2f)
-        {
-            ChangeState(AIState.Idle);
-        }
     }
 
     private void PerformPatrol()
@@ -125,8 +123,82 @@ public class MovingBlock : MonoBehaviour
         {
             _currentWayPointIndex = (_currentWayPointIndex + 1) % _waypoints.Length;
             _agent.SetDestination(_waypoints[_currentWayPointIndex].position);
+
         }
     }
+
+    // Chase state
+    private void ChaseState()
+    {
+        // to do: animazione corsa
+        _agent.SetDestination(_target.position);
+
+        float distance = Vector3.Distance(transform.position, _target.position);
+
+        if (distance <= _agent.stoppingDistance)
+        {
+            ChangeState(AIState.Attacking);
+            return;
+        }
+
+        if (!CanSeePlayer())
+        {
+            // to do : aggiungi che se non lo vede piu raggiunge comunque l ultima posizione del player
+            // e si guarda intorno con animazione inspect
+            _lineRenderer.startColor = Color.white;
+            _lineRenderer.endColor = Color.white;
+            ChangeState(AIState.ReturningToPost);
+        }
+    }
+
+    // Attack state
+    private void AttackState()
+    {
+        _agent.isStopped = true;
+        transform.LookAt(_target);
+
+        if (Time.time - _lastHitTime >= _damageCooldown)
+        {
+            _target.GetComponent<LifeController>()?.TakeDamage(_damage);
+            _lastHitTime = Time.time;
+        }
+
+        // Se il player si allontana torna ad inseguire
+        if (Vector3.Distance(transform.position, _target.position) > _agent.stoppingDistance + 1f)
+        {
+            _agent.isStopped = false;
+            ChangeState(AIState.Chasing);
+        }
+    }
+
+    // Search state
+    
+
+    private void SearchState()
+    {
+        _agent.isStopped = true;
+        _searchTimer += Time.deltaTime;
+
+        // qui puoi mettere una mini animazione tipo "guardia guarda in giro"
+        transform.Rotate(Vector3.up * 50 * Time.deltaTime);
+
+        if (_searchTimer >= _searchDuration)
+        {
+            _searchTimer = 0f;
+            ChangeState(AIState.ReturningToPost);
+        }
+    }
+
+    // ReturnToPost state
+
+    private void ReturnToPostState()
+    {
+        if (!_agent.pathPending && _agent.remainingDistance < 0.2f)
+        {
+            ChangeState(AIState.Idle);
+        }
+    }
+
 
     private bool CanSeePlayer()
     {
@@ -173,6 +245,8 @@ public class MovingBlock : MonoBehaviour
 
         _lineRenderer.SetPositions(arcPoints);
     }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {

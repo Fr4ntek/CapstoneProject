@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1578721226719161796}
   - component: {fileID: 5107457074800944932}
   - component: {fileID: 8781166701219590821}
+  - component: {fileID: 2604459283082765664}
   m_Layer: 0
   m_Name: RedGem
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2604459283082765664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501511424186901610}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37490195, y: 0.23718984, z: 0.37490195}
+  m_Center: {x: 0, y: -0.050988384, z: 0}

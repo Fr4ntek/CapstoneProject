@@ -1474,12 +1474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c1d559af1ce5d4288392238b9b350f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waypoints:
-  - {fileID: 1621126139}
-  - {fileID: 476738736}
-  - {fileID: 291293555}
-  - {fileID: 923365803}
-  _currentState: 0
   _enemy: {fileID: 115548135}
   _viewAngle: 180
   _sightDistance: 12
@@ -1487,6 +1481,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _subdivisions: 15
+  _waypoints:
+  - {fileID: 1621126139}
+  - {fileID: 476738736}
+  - {fileID: 291293555}
+  - {fileID: 923365803}
+  _currentState: 0
+  _searchDuration: 3
   _damage: 10
   _damageCooldown: 1
 --- !u!1001 &119085549
@@ -10818,12 +10819,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c1d559af1ce5d4288392238b9b350f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waypoints:
-  - {fileID: 923365803}
-  - {fileID: 291293555}
-  - {fileID: 476738736}
-  - {fileID: 1621126139}
-  _currentState: 0
   _enemy: {fileID: 953828759}
   _viewAngle: 180
   _sightDistance: 12
@@ -10831,6 +10826,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _subdivisions: 15
+  _waypoints:
+  - {fileID: 923365803}
+  - {fileID: 291293555}
+  - {fileID: 476738736}
+  - {fileID: 1621126139}
+  _currentState: 0
+  _searchDuration: 3
   _damage: 10
   _damageCooldown: 1
 --- !u!4 &956754589 stripped
@@ -16394,7 +16396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410994631}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21577883, y: 0.6603951, z: -0.206863, w: 0.68885815}
+  m_LocalRotation: {x: 0.2157788, y: 0.66039515, z: -0.20686302, w: 0.6888581}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18704,7 +18706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604026013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2282731, y: 0.65652317, z: -0.21884105, w: 0.6848193}
+  m_LocalRotation: {x: 0.2282731, y: 0.6565231, z: -0.218841, w: 0.68481934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21239,7 +21241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815121046}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20324643, y: 0.6640392, z: -0.19484845, w: 0.6926593}
+  m_LocalRotation: {x: 0.20324638, y: 0.66403925, z: -0.19484843, w: 0.6926593}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25593,6 +25595,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 80480854}
+  - {fileID: 1226257623674395820}
   - {fileID: 526818554}
   - {fileID: 1012119359}
   - {fileID: 822843841}
@@ -25635,6 +25639,4 @@ SceneRoots:
   - {fileID: 1046779812}
   - {fileID: 8644554418337710150}
   - {fileID: 3185944822245329136}
-  - {fileID: 80480854}
-  - {fileID: 1226257623674395820}
   - {fileID: 6469121191461303744}

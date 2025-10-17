@@ -2,5 +2,7 @@ public enum AIState
 {
     Idle,
     Chasing,
-    ReturningToPost
+    ReturningToPost,
+    Attacking,
+    Searching
 }
