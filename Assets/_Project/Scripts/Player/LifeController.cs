@@ -21,7 +21,7 @@ public class LifeController : MonoBehaviour
 
     void Start()
     {
-        onLifeChanged?.Invoke(_hp, _maxHp); // aggiorna subito la UI
+        onLifeChanged?.Invoke(_hp, _maxHp); 
         _uiController = GetComponent<UIController>();
     }
 

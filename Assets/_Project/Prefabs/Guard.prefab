@@ -744,10 +744,11 @@ GameObject:
   m_Component:
   - component: {fileID: 686063197858497022}
   - component: {fileID: 8645585645551384998}
-  - component: {fileID: 576647860926286592}
+  - component: {fileID: 3855285330849344034}
+  - component: {fileID: 8550382803090525507}
   m_Layer: 0
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -791,7 +792,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &576647860926286592
+--- !u!114 &3855285330849344034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -800,23 +801,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 4184032892319373823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c1d559af1ce5d4288392238b9b350f, type: 3}
+  m_Script: {fileID: 11500000, guid: 96a061514f5a48d4c956623d0a8372d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 0}
-  _viewAngle: 45
+  _eyePoint: {fileID: 3679461871130789869}
+  _viewAngle: 90
   _sightDistance: 15
   _whatIsObstacle:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 256
   _subdivisions: 12
   _waypoints:
   - {fileID: 0}
   - {fileID: 0}
   _currentState: 0
   _searchDuration: 3
+  _attackCooldown: 1.5
   _damage: 10
-  _damageCooldown: 1
+  _patrolSpeed: 2.4
+  _chaseSpeed: 7
+--- !u!136 &8550382803090525507
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184032892319373823}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.566946
+  m_Height: 3.302267
+  m_Direction: 1
+  m_Center: {x: 0.06694603, y: 1.5976067, z: 0}
 --- !u!1 &4575998410696768348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,7 +1159,7 @@ Transform:
   m_GameObject: {fileID: 6350219537956214009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.186524, z: 0, w: 0.9824504}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -1462,7 +1462,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &115548138
+--- !u!114 &115548141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1471,10 +1471,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 115548132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c1d559af1ce5d4288392238b9b350f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c583f2bfe82f9144abdf1b3d1f6e64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 115548135}
+  _eyePoint: {fileID: 115548135}
   _viewAngle: 180
   _sightDistance: 12
   _whatIsObstacle:
@@ -1488,8 +1488,9 @@ MonoBehaviour:
   - {fileID: 923365803}
   _currentState: 0
   _searchDuration: 3
+  _attackRange: 2
+  _attackCooldown: 1.5
   _damage: 10
-  _damageCooldown: 1
 --- !u!1001 &119085549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4638,7 +4639,7 @@ PrefabInstance:
       addedObject: {fileID: 115548137}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d975f9e1194a2646afaea4ea684d13e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 115548138}
+      addedObject: {fileID: 115548141}
   m_SourcePrefab: {fileID: 100100000, guid: 4d975f9e1194a2646afaea4ea684d13e, type: 3}
 --- !u!1 &418149917 stripped
 GameObject:
@@ -6121,7 +6122,7 @@ PrefabInstance:
       addedObject: {fileID: 953828760}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d975f9e1194a2646afaea4ea684d13e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 953828762}
+      addedObject: {fileID: 953828763}
   m_SourcePrefab: {fileID: 100100000, guid: 4d975f9e1194a2646afaea4ea684d13e, type: 3}
 --- !u!4 &547308233 stripped
 Transform:
@@ -10807,7 +10808,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.90000004
   m_Center: {x: 0, y: 0.99999994, z: 0}
---- !u!114 &953828762
+--- !u!114 &953828763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10816,10 +10817,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 953828756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c1d559af1ce5d4288392238b9b350f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c583f2bfe82f9144abdf1b3d1f6e64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 953828759}
+  _eyePoint: {fileID: 953828759}
   _viewAngle: 180
   _sightDistance: 12
   _whatIsObstacle:
@@ -10833,8 +10834,9 @@ MonoBehaviour:
   - {fileID: 1621126139}
   _currentState: 0
   _searchDuration: 3
+  _attackRange: 2
+  _attackCooldown: 1.5
   _damage: 10
-  _damageCooldown: 1
 --- !u!4 &956754589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6592545726444472440, guid: e542b3c672aa69046bbe6cf3b391214c, type: 3}
@@ -16396,7 +16398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410994631}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2157788, y: 0.66039515, z: -0.20686302, w: 0.6888581}
+  m_LocalRotation: {x: 0.21577883, y: 0.6603951, z: -0.206863, w: 0.68885815}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18706,7 +18708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604026013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2282731, y: 0.6565231, z: -0.218841, w: 0.68481934}
+  m_LocalRotation: {x: 0.2282731, y: 0.6565231, z: -0.21884103, w: 0.68481934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21241,7 +21243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815121046}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20324638, y: 0.66403925, z: -0.19484843, w: 0.6926593}
+  m_LocalRotation: {x: 0.2032464, y: 0.66403925, z: -0.19484842, w: 0.6926594}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

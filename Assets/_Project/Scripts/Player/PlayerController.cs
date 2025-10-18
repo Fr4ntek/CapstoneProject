@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour
     public float Vertical {get; private set;}
     public bool IsRunning { get; private set;}
 
+    private float _movingTimer;
     private Rigidbody _rb;
     private Vector3 _direction;
     private Vector3 _camForward;
     private Vector3 _camRight;
-    private bool _canMove = true;
 
     void Start()
     {
@@ -93,12 +93,15 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    //public IEnumerator TemporarilyDisableMovement()
-    //{
-    //    _canMove = false;
-    //    yield return new WaitForSeconds(1f); 
-    //    _canMove = true;
-    //}
+    public bool IsMoving()
+    {
+        if (_rb.velocity.magnitude > 1.5f)
+            _movingTimer += Time.deltaTime;
+        else
+            _movingTimer = 0f;
+
+        return _movingTimer > 0.2f;
+    }
 
     void OnCollisionStay(Collision collision)
     {
