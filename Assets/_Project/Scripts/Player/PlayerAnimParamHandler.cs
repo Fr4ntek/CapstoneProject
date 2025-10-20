@@ -11,42 +11,54 @@ public class PlayerAnimParamHandler : MonoBehaviour
     [SerializeField] private string _paramNameIsGrounded = "isGrounded";
     [SerializeField] private string _paramNameJump = "jump";
 
+    private bool _groundedLastFrame = true;
+    private float _groundedTimer = 0f;
+    [SerializeField] private float _groundedBuffer = 0.1f; // 100ms
+
     private Animator _anim;
-    private PlayerController _playerController;
-    private Rigidbody _rb;
+    private PlayerController_CC _player;
+    // private Rigidbody _rb;
 
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _playerController = GetComponent<PlayerController>();
-        _rb = GetComponent<Rigidbody>();
+        _player = GetComponent<PlayerController_CC>();
     }
-
 
     void Update()
     {
-        if (_playerController.IsRunning)
+        if (_player.IsRunning)
         {
-            _anim.SetFloat(_paramNameV, _playerController.Vertical * 2);
-            _anim.SetFloat(_paramNameH, _playerController.Horizontal * 2);
+            _anim.SetFloat(_paramNameV, _player.Vertical * 2);
+            _anim.SetFloat(_paramNameH, _player.Horizontal * 2);
         }
         else
         {
-            _anim.SetFloat(_paramNameV, _playerController.Vertical);
-            _anim.SetFloat(_paramNameH, _playerController.Horizontal);
+            _anim.SetFloat(_paramNameV, _player.Vertical);
+            _anim.SetFloat(_paramNameH, _player.Horizontal);
         }
-        _anim.SetFloat(_paramNameVSpeed, _rb.velocity.y);
+  
+        _anim.SetFloat(_paramNameVSpeed, _player.VelocityY);
+        _anim.SetBool(_paramNameIsGrounded, IsGroundedSmooth());
+
     }
 
     public void OnJump()
     {
         _anim.SetTrigger(_paramNameJump);
     }
-
-    public void OnIsGroundedChanged(bool isGrounded)
+    public bool IsGroundedSmooth()
     {
-        _anim.SetBool(_paramNameIsGrounded, isGrounded);
+        if (_player.IsGrounded())
+        {
+            _groundedTimer = _groundedBuffer;
+            _groundedLastFrame = true;
+        }
+        else
+        {
+            _groundedTimer -= Time.deltaTime;
+            if (_groundedTimer <= 0f) _groundedLastFrame = false;
+        }
+        return _groundedLastFrame;
     }
-
-    
 }

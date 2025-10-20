@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5717562593202769341}
   - component: {fileID: 2889079935597800713}
   - component: {fileID: 8121539370244734665}
-  m_Layer: 6
+  - component: {fileID: 2400074352710900927}
+  m_Layer: 10
   m_Name: template-floor-layer
-  m_TagString: Untagged
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2213763392762229302}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 79.75, y: 0, z: 126.10999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -105,3 +106,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.0237417, y: 0.5, z: 4.0000005}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!114 &2400074352710900927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213763392762229302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a12056cbd3c8b441afff97262011a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _endPosition: {fileID: 0}
+  _duration: 5

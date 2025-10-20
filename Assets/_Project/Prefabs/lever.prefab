@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3763261130742463291}
   - component: {fileID: 3185713153417895500}
   - component: {fileID: 2129735936770756986}
-  - component: {fileID: 1770498559565962195}
+  - component: {fileID: 3453830823942599402}
   m_Layer: 0
   m_Name: lever
   m_TagString: Untagged
@@ -189,8 +189,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.638015, y: 6.8724365, z: 6.823921}
-  m_Center: {x: 0.53187704, y: 3.4362183, z: 0.115558624}
+  m_Size: {x: 7.0624475, y: 6.8724365, z: 6.823921}
+  m_Center: {x: 0.9881053, y: 3.4362183, z: 0.115558624}
 --- !u!114 &2129735936770756986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,27 +204,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactKey: 101
-  _objectToAffect: {fileID: 0}
-  _destroyObject: 0
-  _triggerName: Press
---- !u!95 &1770498559565962195
-Animator:
-  serializedVersion: 5
+  _fakeFloor: {fileID: 0}
+  _doorAnimation: {fileID: 0}
+  _wrongLever: 0
+  _doorCam: {fileID: 0}
+  _playerCam: {fileID: 0}
+  _focusDuration: 2
+--- !u!111 &3453830823942599402
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2788500760965510384}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 09947d0b1137b424b9e3d5bd9b9bd08b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: de03beed9045882488f2091ceccb496c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: de03beed9045882488f2091ceccb496c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

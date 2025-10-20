@@ -16,6 +16,7 @@ public class EnemyBaseAI : MonoBehaviour
 
     [Header("View Settings")]
     [SerializeField] protected Transform _eyePoint;
+    [SerializeField] protected Transform _player;
     [SerializeField] protected float _viewAngle = 45f;
     [SerializeField] protected float _sightDistance = 15f;
     [SerializeField] protected LayerMask _whatIsObstacle;
@@ -37,15 +38,11 @@ public class EnemyBaseAI : MonoBehaviour
     [SerializeField] protected int _damage = 10;
     protected float _lastAttackTime;
 
-    protected Transform _player;
     protected NavMeshAgent _agent;
-    //protected bool _alerted = false;
-    
 
     protected virtual void Start()
     {
         _startPosition = transform.position;
-        _player = GameObject.FindGameObjectWithTag("Player")?.transform;
         _agent = GetComponent<NavMeshAgent>();
         _lineRenderer = GetComponentInChildren<LineRenderer>();
         if (_lineRenderer != null) ChangeLineColor(Color.white);
@@ -87,7 +84,7 @@ public class EnemyBaseAI : MonoBehaviour
         switch (newState)
         {
             case AIState.Patrolling:
-                //PerformPatrol();
+                PerformPatrol();
                 break;
             case AIState.Chasing:
             case AIState.Alerted:
@@ -110,7 +107,7 @@ public class EnemyBaseAI : MonoBehaviour
     // Idle state
     protected virtual void PatrolState()
     {
-        PerformPatrol(); // poi sistema perche perform patrol deve essere chiamato secondo me solo qui e non nello switch
+        PerformPatrol(); 
     }
 
     protected void PerformPatrol()

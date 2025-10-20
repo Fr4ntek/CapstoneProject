@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = _direction + new Vector3(0f, _rb.velocity.y, 0f);
     }
 
-    private bool Grounded()
+    public bool Grounded()
     {
         if (_groundChecker.IsGrounded) return true;
         return false;
@@ -103,16 +103,16 @@ public class PlayerController : MonoBehaviour
         return _movingTimer > 0.2f;
     }
 
-    void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("MovingPlatform"))
-        {
-            MovingPlatform platform = collision.gameObject.GetComponent<MovingPlatform>();
-            if (platform != null)
-            {
-                Vector3 platformVelocity = platform.GetVelocity();
-                _rb.MovePosition(_rb.position + platformVelocity * Time.fixedDeltaTime);
-            }
-        }
-    }
+    //void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("MovingPlatform"))
+    //    {
+    //        MovingPlatform platform = collision.gameObject.GetComponent<MovingPlatform>();
+    //        if (platform != null)
+    //        {
+    //            Vector3 platformVelocity = platform.GetVelocity();
+    //            _rb.MovePosition(_rb.position + platformVelocity * Time.fixedDeltaTime);
+    //        }
+    //    }
+    //}
 }

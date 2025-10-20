@@ -57,7 +57,7 @@ public class SpotlightController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            PlayerController_CC player = other.GetComponent<PlayerController_CC>();
             if (player != null && player.IsMoving()) 
             {
                 if (Time.time - _lastAlertTime >= alertCooldown)

@@ -1,45 +1,68 @@
-using TMPro;
 using UnityEngine;
+using Cinemachine;
+using System.Collections;
 
 public class Lever : MonoBehaviour
 {
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
-    [SerializeField] private GameObject _objectToAffect;
-    [SerializeField] private bool _destroyObject;
-     [SerializeField] private string _triggerName = "Press";
-    
-    private Animator _anim; 
+    [SerializeField] private GameObject _fakeFloor;
+    [SerializeField] private Animation _doorAnimation;
+    [SerializeField] private bool _wrongLever;
+
+    [Header("Camera Focus (Cinemachine)")]
+    [SerializeField] private CinemachineVirtualCamera _doorCam;
+    [SerializeField] private CinemachineFreeLook _playerCam;
+    [SerializeField] private float _focusDuration = 2f;
+
+    private Animation _leverAnimation;
+    private bool _playerInTrigger = false;
     private bool _activated = false;
 
     private void Start()
     {
-        _anim = GetComponent<Animator>();
+        _leverAnimation = GetComponent<Animation>();
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (_activated || !other.CompareTag("Player")) return;
-
-        if (Input.GetKeyDown(_interactKey))
+        if (!_activated && _playerInTrigger && Input.GetKeyDown(_interactKey))
         {
             Activate();
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            _playerInTrigger = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            _playerInTrigger = false;
+    }
+
     private void Activate()
     {
-        _anim.SetTrigger(_triggerName);
+        _activated = true;
+        _leverAnimation.Play();
 
-        if (_destroyObject)
+        if (_wrongLever)
         {
-            if (_objectToAffect != null) Destroy(_objectToAffect);
+            Destroy(_fakeFloor);
         }
         else
         {
-            // Apre porta: attiva un’animazione o sposta fisicamente l’oggetto
-            //if (_objectToAffect != null)
-            //    _objectToAffect.transform.position += Vector3.up * 3f; // esempio: si alza di 3 unità
+            _doorAnimation.Play();
+            StartCoroutine(FocusOnDoor());
         }
-        _activated = true;
+    }
+
+    private IEnumerator FocusOnDoor()
+    { 
+        _doorCam.Priority = 11;
+        yield return new WaitForSeconds(_focusDuration);
+        _doorCam.Priority = 5;
     }
 }
