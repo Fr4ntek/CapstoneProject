@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6066771218928955775}
   - component: {fileID: 1955775480354856558}
   - component: {fileID: 3932707140926476010}
-  - component: {fileID: 6158385657368663246}
+  - component: {fileID: 5482110139208207957}
+  - component: {fileID: 7177628197136793148}
   m_Layer: 0
   m_Name: button-square red
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4457841998400314318}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -28.25, y: 0, z: 89.994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -85,8 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6158385657368663246
-MeshCollider:
+--- !u!111 &5482110139208207957
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457841998400314318}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5ac377e110cf63143ac28947f7b5f050, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 5ac377e110cf63143ac28947f7b5f050, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!65 &7177628197136793148
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,10 +120,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7570295060702756835, guid: fd659bb1e38441444a9b1a4cd2ed2ee9, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 3, y: 0.49999997, z: 3}
+  m_Center: {x: 0, y: 0.24999999, z: 0}
 --- !u!1 &5884148704497598739
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +134,8 @@ GameObject:
   - component: {fileID: 6587309316782070507}
   - component: {fileID: 4055075119937926228}
   - component: {fileID: 3466923610727880077}
+  - component: {fileID: 1145704902895255091}
+  - component: {fileID: 7590777908457191402}
   m_Layer: 0
   m_Name: button
   m_TagString: Untagged
@@ -190,3 +208,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1145704902895255091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5884148704497598739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4078a24661909c49834c258b459425c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorName: Red
+  _manager: {fileID: 0}
+--- !u!65 &7590777908457191402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5884148704497598739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9999999, y: 0.49999997, z: 1.9999999}
+  m_Center: {x: 0, y: 0.74999994, z: 0}

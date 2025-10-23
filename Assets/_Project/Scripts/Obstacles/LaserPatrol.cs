@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class LaserPatrol : MonoBehaviour
 {
-    public Transform[] _waypoints;
-    public float _duration = 5f;
+    [SerializeField] private int _damage = 10;
+    [SerializeField] private Transform[] _waypoints;
+    [SerializeField] private float _duration = 5f;
     void Start()
     {
         if (_waypoints.Length == 0) return;
@@ -20,6 +21,14 @@ public class LaserPatrol : MonoBehaviour
         transform.DOPath(path, _duration, PathType.Linear, PathMode.Full3D)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<LifeController>().TakeDamage(_damage);
+        }
     }
 }
 

@@ -44,7 +44,6 @@ public class LifeController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("[LifeController] GameObject distrutto.");
         if (_isDead) return;
         _isDead = true;
 

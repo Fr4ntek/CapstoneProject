@@ -6,12 +6,11 @@ public class Lever : MonoBehaviour
 {
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
     [SerializeField] private GameObject _fakeFloor;
-    [SerializeField] private Animation _doorAnimation;
+    [SerializeField] private GameObject _door;
     [SerializeField] private bool _wrongLever;
 
-    [Header("Camera Focus (Cinemachine)")]
+    [Header("Camera Focus")]
     [SerializeField] private CinemachineVirtualCamera _doorCam;
-    [SerializeField] private CinemachineFreeLook _playerCam;
     [SerializeField] private float _focusDuration = 2f;
 
     private Animation _leverAnimation;
@@ -54,7 +53,8 @@ public class Lever : MonoBehaviour
         }
         else
         {
-            _doorAnimation.Play();
+            _door.GetComponentInParent<Animation>().Play();
+            _door.GetComponent<Collider>().enabled = false;
             StartCoroutine(FocusOnDoor());
         }
     }

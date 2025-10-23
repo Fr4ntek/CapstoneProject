@@ -16,11 +16,6 @@ public class PlayerController_CC : MonoBehaviour
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private float _fallMultiplier = 2f;
 
-    [Header("Platform Detection")]
-    [SerializeField] private LayerMask _platformLayer;
-    [SerializeField] private float _platformCheckRadius = 0.3f;
-    [SerializeField] private float _platformCheckDistance = 0.6f;
-
     [Header("References")]
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private UnityEvent _onJump;

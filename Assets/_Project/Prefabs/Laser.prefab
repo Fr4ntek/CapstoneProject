@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508fda96ae9780c44a86299eda981e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _laserRenderer: {fileID: 0}
-  _laserCollider: {fileID: 0}
+  _damage: 3
   _onTime: 1.5
   _offTime: 1

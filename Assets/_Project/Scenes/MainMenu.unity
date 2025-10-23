@@ -187,6 +187,26 @@ MonoBehaviour:
     volume: 0.03
     loop: 0
     source: {fileID: 0}
+  - name: CorrectCombination
+    clip: {fileID: 8300000, guid: 478bf33379b20104fa9cd4bd04c39e77, type: 3}
+    volume: 0.03
+    loop: 0
+    source: {fileID: 0}
+  - name: WrongCombination
+    clip: {fileID: 8300000, guid: 33e2d14e296a38f4bb2ad5c84f9854ee, type: 3}
+    volume: 0.03
+    loop: 0
+    source: {fileID: 0}
+  - name: ButtonPress
+    clip: {fileID: 8300000, guid: 2ffc53d0eff4ccd40a21672d92fb9343, type: 3}
+    volume: 0.03
+    loop: 0
+    source: {fileID: 0}
+  - name: ChestOpening
+    clip: {fileID: 8300000, guid: 04e1561f085b1604f9f739d282f393b1, type: 3}
+    volume: 0.03
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &211776260
 GameObject:
   m_ObjectHideFlags: 0

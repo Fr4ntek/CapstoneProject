@@ -5,20 +5,27 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    [Header("HealthBar")]
     [SerializeField] private Image _healthBarSprite;
     [SerializeField] private Gradient _gradient;
     [SerializeField] private TextMeshProUGUI _coinCounterText;
     [SerializeField] private GameObject _coinWarningMessage;
-    [SerializeField] private GameObject _godWarningMessage;
+
+    [Header("Timer")]
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private float _countdownTime = 60f;
+    
+    [Header("Gems")]
+    [SerializeField] private Image _redGemUI;
+    [SerializeField] private Image _yellowGemUI;
+    [SerializeField] private Image _blueGemUI;
+
     [SerializeField] private GameManager _gameManager;
 
     public int _coinCount = 0;
     private float _timeLeft;
     private bool _isTimeRunning = false;
     private LifeController _lifeController;
-
 
     void Start()
     {
@@ -63,26 +70,32 @@ public class UIController : MonoBehaviour
         UpdateCoinUI();
     }
 
+    public void UpdateGemUI(GemPicker.GemType color)
+    {
+        switch (color)
+        {
+            case GemPicker.GemType.Red:
+                _redGemUI.color = Color.white;
+                break;
+            case GemPicker.GemType.Yellow:
+                _yellowGemUI.color = Color.white;
+                break;
+            case GemPicker.GemType.Blue:
+                _blueGemUI.color = Color.white;
+                break;
+        }
+        AudioManager.Instance.Play("Gem");
+    }
+
     private void UpdateCoinUI()
     {
-        _coinCounterText.text = "x " + _coinCount.ToString();
+        _coinCounterText.text = _coinCount.ToString();
     }
 
     public void UpdateHealthBar(int hp, int maxHp)
     {
         _healthBarSprite.fillAmount = (float)hp / maxHp;
         _healthBarSprite.color = _gradient.Evaluate(_healthBarSprite.fillAmount);
-    }
-
-    public void OnEntranceDoor()
-    {
-        StartCoroutine(ShowEntranceDoorMessage());
-    }
-    private IEnumerator ShowEntranceDoorMessage()
-    {
-        _godWarningMessage.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        _godWarningMessage.SetActive(false);
     }
 
     public void ShowVictoryUI()

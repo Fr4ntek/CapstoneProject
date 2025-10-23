@@ -48,8 +48,8 @@ Light:
   m_Color: {r: 0, g: 0.8117647, b: 1, a: 1}
   m_Intensity: 5
   m_Range: 8
-  m_SpotAngle: 45
-  m_InnerSpotAngle: 3
+  m_SpotAngle: 35
+  m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -115,7 +115,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.5
+  m_Radius: 1.8
   m_Center: {x: 0, y: 0, z: 6.89}
 --- !u!114 &6718021578883838032
 MonoBehaviour:
@@ -129,5 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc0d158cb7d66448a49f9ecf2aadcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onDuration: 5
-  _offDuration: 3
+  _onDuration: 3
+  _offDuration: 1
+  alertCooldown: 1

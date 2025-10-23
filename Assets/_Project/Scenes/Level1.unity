@@ -1475,6 +1475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eyePoint: {fileID: 115548135}
+  _player: {fileID: 0}
   _viewAngle: 180
   _sightDistance: 12
   _whatIsObstacle:
@@ -10820,6 +10821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eyePoint: {fileID: 953828759}
+  _player: {fileID: 0}
   _viewAngle: 180
   _sightDistance: 12
   _whatIsObstacle:
@@ -16396,7 +16398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410994631}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21577877, y: 0.6603951, z: -0.20686293, w: 0.6888583}
+  m_LocalRotation: {x: 0.21577881, y: 0.66039515, z: -0.20686302, w: 0.68885815}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18706,7 +18708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604026013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22827306, y: 0.6565231, z: -0.21884103, w: 0.6848193}
+  m_LocalRotation: {x: 0.2282731, y: 0.65652317, z: -0.21884105, w: 0.6848193}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21241,7 +21243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815121046}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20324643, y: 0.6640392, z: -0.19484843, w: 0.6926593}
+  m_LocalRotation: {x: 0.20324638, y: 0.66403925, z: -0.19484842, w: 0.6926594}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25543,6 +25545,10 @@ PrefabInstance:
     - target: {fileID: 793770101214047829, guid: 76c6f1fd3bb38d041b3f2fcb1ded2f0f, type: 3}
       propertyPath: m_Name
       value: door-rotate-large
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987501672286239595, guid: 76c6f1fd3bb38d041b3f2fcb1ded2f0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6813559804586329261, guid: 76c6f1fd3bb38d041b3f2fcb1ded2f0f, type: 3}
       propertyPath: m_LocalPosition.x

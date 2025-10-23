@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public Renderer _laserRenderer;
-    public Collider _laserCollider;
-    public float _onTime = 1.5f;
-    public float _offTime = 1f;
+    [SerializeField] private int _damage = 10;
+    [SerializeField] private float _onTime = 1.5f;
+    [SerializeField] private float _offTime = 1f;
 
+    private Renderer _laserRenderer;
+    private Collider _laserCollider;
+    
     void Start() 
     {
         _laserRenderer = GetComponent<Renderer>();  
@@ -33,7 +35,7 @@ public class Laser : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // esempio: player muore o viene respawnato
+            other.gameObject.GetComponent<LifeController>().TakeDamage(_damage);
         }
     }
 }

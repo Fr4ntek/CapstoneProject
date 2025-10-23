@@ -5,9 +5,7 @@ public class SpotlightController : MonoBehaviour
     
     [SerializeField] private float _onDuration = 5f;
     [SerializeField] private float _offDuration = 3f;
-    [SerializeField] private float alertCooldown = 5f;
 
-    private float _lastAlertTime = -999f;
     private float _timer = 0f;
     private bool _isOn = false;
     private Light _spotlight;
@@ -60,9 +58,8 @@ public class SpotlightController : MonoBehaviour
             PlayerController_CC player = other.GetComponent<PlayerController_CC>();
             if (player != null && player.IsMoving()) 
             {
-                if (Time.time - _lastAlertTime >= alertCooldown)
+                if (!_guards[0].IsAlerted())
                 {
-                    _lastAlertTime = Time.time;
                     AlertGuards(other.transform.position);
                 }
             }
@@ -71,6 +68,7 @@ public class SpotlightController : MonoBehaviour
 
     private void AlertGuards(Vector3 playerPosition)
     {
+        AudioManager.Instance.Play("Alarm");
         foreach (var guard in _guards)
         {
            guard.ChasePosition(playerPosition);

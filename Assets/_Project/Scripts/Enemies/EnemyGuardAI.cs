@@ -75,11 +75,16 @@ public class EnemyGuardAI : EnemyBaseAI
         ChangeState(AIState.Alerted);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public bool IsAlerted()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        return _currentState == AIState.Alerted;
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<LifeController>().TakeDamage(_damage);
+            collision.GetComponent<LifeController>().TakeDamage(_damage);
         }
     }
 }
