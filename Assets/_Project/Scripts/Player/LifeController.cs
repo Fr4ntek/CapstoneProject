@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,9 @@ public class LifeController : MonoBehaviour
     [SerializeField] private int _hp;
     [SerializeField] private bool _fullHpOnStart = true;
     //[SerializeField] private GameManager _gameManager;
-    
-    public UnityEvent<int, int> onLifeChanged;
+
+    public event Action<int, int> OnLifeChanged;
+
     private bool _isDead = false;
     private UIController _uiController;
 
@@ -21,14 +23,15 @@ public class LifeController : MonoBehaviour
 
     void Start()
     {
-        onLifeChanged?.Invoke(_hp, _maxHp); 
+        OnLifeChanged(_hp, _maxHp);
         _uiController = GetComponent<UIController>();
     }
 
     public void SetHp(int amount)
     {
         _hp = Mathf.Clamp(amount, 0, _maxHp);
-        onLifeChanged?.Invoke(_hp, _maxHp);
+        OnLifeChanged(_hp, _maxHp);
+        
         if (_hp <= 0) Die();
     }
 
@@ -39,6 +42,7 @@ public class LifeController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        GetComponentInChildren<PlayerDamageFeedback>().FlashDamage();
         AddHp(-damage);
     }
 
@@ -48,6 +52,6 @@ public class LifeController : MonoBehaviour
         _isDead = true;
 
         if (_uiController != null) _uiController.ShowDeathUI();
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

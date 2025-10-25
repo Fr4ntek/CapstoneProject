@@ -1,30 +1,25 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class MovingSaw : MonoBehaviour
 {
+    [SerializeField] private Transform _endPosition;
+    [SerializeField] private float _duration = 2f;
+    [SerializeField] private float _rotateSpeed = 360f;
     [SerializeField] private int _damage = 20;
-    [SerializeField] private float _speed = 2f;
-    [SerializeField] private float _rotationSpeed = 360f;
-    [SerializeField] private Transform _pointA;
-    [SerializeField] private Transform _pointB;
-
-    private Vector3 _targetPos;
 
     private void Start()
     {
-        _targetPos = _pointB.position;
-    }
+        transform.DOMove(_endPosition.position, _duration)
+         .SetEase(Ease.InOutSine)
+         .SetLoops(-1, LoopType.Yoyo);
 
-    private void Update()
-    {
-        transform.Rotate(Vector3.forward, _rotationSpeed * Time.deltaTime);
-        
-        transform.position = Vector3.MoveTowards(transform.position, _targetPos, _speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, _targetPos) < 0.05f)
-        {
-            // inverto destinazione
-            _targetPos = (_targetPos == _pointA.position) ? _pointB.position : _pointA.position;
-        }
+        transform.DORotate(
+            transform.localRotation.eulerAngles + new Vector3(0, 0, 360),
+            360f / _rotateSpeed,
+            RotateMode.FastBeyond360)
+            .SetLoops(-1, LoopType.Restart)
+            .SetEase(Ease.Linear);
     }
 
     private void OnTriggerEnter(Collider other)

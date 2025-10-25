@@ -45,7 +45,6 @@ public class Bomb : MonoBehaviour
 
         foreach (Collider nearby in colliders)
         {
-            Debug.Log("polayer trovato");
             LifeController lc = nearby.GetComponent<LifeController>();
             if (lc != null) lc.TakeDamage(_damage);
         }

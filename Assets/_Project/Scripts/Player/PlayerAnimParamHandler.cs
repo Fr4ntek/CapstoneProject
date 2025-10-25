@@ -6,7 +6,7 @@ public class PlayerAnimParamHandler : MonoBehaviour
 {
     [SerializeField] private string _paramNameV = "vertical";
     [SerializeField] private string _paramNameH = "horizontal";
-    [SerializeField] private string _paramNameRun = "isRunning";
+    //[SerializeField] private string _paramNameRun = "isRunning";
     [SerializeField] private string _paramNameVSpeed = "vSpeed";
     [SerializeField] private string _paramNameIsGrounded = "isGrounded";
     [SerializeField] private string _paramNameJump = "jump";

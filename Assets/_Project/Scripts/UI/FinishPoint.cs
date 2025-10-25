@@ -5,8 +5,7 @@ public class FinishPoint : MonoBehaviour
     [SerializeField] private GameObject _showMessage;
 
     private bool _isPlayerInside = false;
-    private bool _isDoorOpen = false;
-    private UIController _UIController;
+    private UIController _uiController;
     private Animator _doorAnimator;
     private AudioSource _sfx;
 
@@ -19,7 +18,8 @@ public class FinishPoint : MonoBehaviour
     {
         if (_isPlayerInside && Input.GetKeyDown(KeyCode.E))
         {
-            _UIController.ShowVictoryUI();
+            //_UIController.ShowVictoryUI();
+            //vai al secondo livello
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -27,11 +27,10 @@ public class FinishPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _isPlayerInside = true;
-            _isDoorOpen = true;
-            _doorAnimator.SetBool("openDoor", _isDoorOpen);
+            _doorAnimator.SetBool("openDoor", true);
             _showMessage?.SetActive(true);
             _sfx.Play();
-            _UIController = other.GetComponent<UIController>();
+            _uiController = other.GetComponent<UIController>();
         }
     }
 
@@ -40,8 +39,7 @@ public class FinishPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _isPlayerInside = false;
-            _isDoorOpen = false;
-            _doorAnimator.SetBool("openDoor", _isDoorOpen);
+            _doorAnimator.SetBool("openDoor", false);
             _showMessage?.SetActive(false);
         }
     }

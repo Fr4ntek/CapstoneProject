@@ -6,39 +6,27 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class FinalDoorController : MonoBehaviour
 {
+    [SerializeField] private PlayerStats _playerStats;
     [SerializeField] private ParticleSystem exitGlow;
     [SerializeField] private CinemachineVirtualCamera _doorCam;
     [SerializeField] private float _focusDuration = 2f;
 
     private bool _isOpened;
-    private bool _isRedGemCollected = false;
-    private bool _isYellowGemCollected = false;
-    private bool _isBlueGemCollected = false;
+    
 
-    public void CheckAllGemsCollected(GemPicker.GemType color)
+    private void OnEnable()
     {
-        if (_isOpened) return;
+        _playerStats.OnAllGemsCollected += OpenDoor;
+    }
 
-        switch (color)
-        {
-            case GemPicker.GemType.Red:
-                _isRedGemCollected = true;
-                break;
-            case GemPicker.GemType.Yellow:
-                _isYellowGemCollected = true;
-                break;
-            case GemPicker.GemType.Blue:
-                _isBlueGemCollected = true;
-                break;
-        }
-
-        if(_isRedGemCollected && _isBlueGemCollected && _isYellowGemCollected) 
-            OpenDoor();
-        
+    private void OnDisable()
+    {
+        _playerStats.OnAllGemsCollected -= OpenDoor;
     }
 
     private void OpenDoor()
     {
+        if (_isOpened) return;
         _isOpened = true;
         GetComponentInParent<Animation>().Play();
         GetComponent<Collider>().enabled = false;

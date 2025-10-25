@@ -1,11 +1,12 @@
 using System.Collections;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [Header("HealthBar")]
+    [Header("HealthBar/Coin")]
     [SerializeField] private Image _healthBarSprite;
     [SerializeField] private Gradient _gradient;
     [SerializeField] private TextMeshProUGUI _coinCounterText;
@@ -20,17 +21,39 @@ public class UIController : MonoBehaviour
     [SerializeField] private Image _yellowGemUI;
     [SerializeField] private Image _blueGemUI;
 
+    [Header("References")]
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Image _fadeOverlay;
+
+    [Header("Fade Settings")]
+    [SerializeField] private float _fadeDuration = 0.5f;
 
     public int _coinCount = 0;
     private float _timeLeft;
     private bool _isTimeRunning = false;
     private LifeController _lifeController;
+    private PlayerStats _playerStats;
+
+
+    private void OnEnable()
+    {
+        _playerStats = GetComponent<PlayerStats>();
+        _lifeController = GetComponent<LifeController>();
+        _playerStats.OnCoinCollected += UpdateCoinUI;
+        _playerStats.OnGemCollected += UpdateGemUI;
+        _lifeController.OnLifeChanged += UpdateHealthBar;
+    }
+
+    private void OnDisable()
+    {
+        _playerStats.OnCoinCollected -= UpdateCoinUI;
+        _playerStats.OnGemCollected -= UpdateGemUI;
+        _lifeController.OnLifeChanged -= UpdateHealthBar;
+    }
 
     void Start()
-    {
-        _lifeController = GetComponent<LifeController>();
-        UpdateCoinUI();
+    {   
+        UpdateCoinUI(0);
         SetTimerUI();
     }
 
@@ -42,7 +65,12 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        UpdateTimerUI();   
+        UpdateTimerUI();
+        if (_timeLeft <= 0f)
+        {
+            _isTimeRunning = false;
+            _lifeController.Die();
+        }
     }
 
     private void UpdateTimerUI()
@@ -55,46 +83,32 @@ public class UIController : MonoBehaviour
         int seconds = Mathf.FloorToInt(_timeLeft % 60f);
 
         _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        if (_timeLeft <= 0f)
-        {
-            _isTimeRunning = false;
-            _lifeController.Die();
-        }
     }
 
-    public void AddCoin(int amount)
+    public void UpdateGemUI(GemTypeEnum gemType)
     {
-        _coinCount += amount;
-        AudioManager.Instance.Play("Coin");
-        UpdateCoinUI();
-    }
-
-    public void UpdateGemUI(GemPicker.GemType color)
-    {
-        switch (color)
+        switch (gemType)
         {
-            case GemPicker.GemType.Red:
+            case GemTypeEnum.Red:
                 _redGemUI.color = Color.white;
                 break;
-            case GemPicker.GemType.Yellow:
+            case GemTypeEnum.Yellow:
                 _yellowGemUI.color = Color.white;
                 break;
-            case GemPicker.GemType.Blue:
+            case GemTypeEnum.Blue:
                 _blueGemUI.color = Color.white;
                 break;
         }
-        AudioManager.Instance.Play("Gem");
     }
 
-    private void UpdateCoinUI()
+    private void UpdateCoinUI(int coins)
     {
-        _coinCounterText.text = _coinCount.ToString();
+        _coinCounterText.text = coins.ToString();
     }
 
     public void UpdateHealthBar(int hp, int maxHp)
     {
-        _healthBarSprite.fillAmount = (float)hp / maxHp;
+        _healthBarSprite.fillAmount = (float) hp / maxHp;
         _healthBarSprite.color = _gradient.Evaluate(_healthBarSprite.fillAmount);
     }
 
@@ -108,4 +122,20 @@ public class UIController : MonoBehaviour
         _gameManager.ShowDeathUI();
     }
 
+    public IEnumerator FadeIn()
+    {
+        yield return _fadeOverlay.DOFade(1f, _fadeDuration).WaitForCompletion();
+    }
+
+    public IEnumerator FadeOut()
+    {
+        yield return _fadeOverlay.DOFade(0f, _fadeDuration).WaitForCompletion();
+    }
+
+    //public void RefreshGemUI()
+    //{
+    //    redGemUI.color = playerStats.HasGem(GemType.Red) ? Color.white : Color.gray;
+    //    blueGemUI.color = playerStats.HasGem(GemType.Blue) ? Color.white : Color.gray;
+    //    greenGemUI.color = playerStats.HasGem(GemType.Green) ? Color.white : Color.gray;
+    //}
 }

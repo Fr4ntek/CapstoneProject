@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
                 AudioManager.Instance.Play(sceneName);
                 break;
         }
+        DOTween.KillAll();
         SceneManager.LoadScene(sceneName);
     }
 
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
         _deathUI.SetActive(true);
         AudioManager.Instance.StopAll();
         Time.timeScale = 0f;
+        SaveSystem.ClearCheckpoint();
     }
 
     public void ShowVictoryUI()

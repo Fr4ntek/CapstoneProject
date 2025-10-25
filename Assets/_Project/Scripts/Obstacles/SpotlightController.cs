@@ -1,14 +1,17 @@
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class SpotlightController : MonoBehaviour
 {
-    
+    [SerializeField] private AudioClip _onSound;
+    [SerializeField] private AudioClip _offSound;
     [SerializeField] private float _onDuration = 5f;
     [SerializeField] private float _offDuration = 3f;
 
     private float _timer = 0f;
     private bool _isOn = false;
     private Light _spotlight;
+    private AudioSource _source;
     private SphereCollider _detectionCollider;
     private EnemyGuardAI[] _guards;
 
@@ -17,6 +20,7 @@ public class SpotlightController : MonoBehaviour
         _spotlight = GetComponent<Light>();
         _detectionCollider = GetComponent<SphereCollider>();
         _guards = FindObjectsOfType<EnemyGuardAI>();
+        _source = GetComponent<AudioSource>();
         TurnOffLight();
     }
 
@@ -38,6 +42,7 @@ public class SpotlightController : MonoBehaviour
     void TurnOnLight()
     {
         _isOn = true;
+        _source.PlayOneShot(_onSound);
         _spotlight.enabled = true;
         _detectionCollider.enabled = true;
     }
@@ -45,6 +50,7 @@ public class SpotlightController : MonoBehaviour
     void TurnOffLight()
     {
         _isOn = false;
+        _source.PlayOneShot(_offSound);
         _spotlight.enabled = false;
         _detectionCollider.enabled = false;
     }

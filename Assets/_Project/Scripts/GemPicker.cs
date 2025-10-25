@@ -3,13 +3,8 @@ using UnityEngine;
 
 public class GemPicker : MonoBehaviour
 {
-    public enum GemType { Red, Yellow, Blue }
-
     [SerializeField] private float _rotateSpeed = 90f;
-    [SerializeField] private GemType _gemType;
-    [SerializeField] private FinalDoorController _door;
-
-    private UIController _uiController;
+    [SerializeField] private GemTypeEnum _gemType;
 
     private void Start()
     {
@@ -24,11 +19,11 @@ public class GemPicker : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-
-        _uiController = other.GetComponent<UIController>();
-        _uiController.UpdateGemUI(_gemType);
-
-        _door.CheckAllGemsCollected(_gemType);
+       
+        AudioManager.Instance.Play("Gem");
+        PlayerStats stats = other.GetComponent<PlayerStats>();
+        if (stats != null)
+            stats.CollectGem(_gemType);
         
         DOTween.Kill(transform);
         Destroy(gameObject);

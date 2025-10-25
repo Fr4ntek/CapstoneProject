@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.UI.Image;
@@ -15,6 +16,11 @@ public class PlayerController_CC : MonoBehaviour
     [SerializeField] private float _jumpHeight = 3f;
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private float _fallMultiplier = 2f;
+
+    [Header("Roll")]
+    [SerializeField] private float _rollDuration = 1f;
+    private Animator _anim;
+    private bool _isRolling = false;
 
     [Header("References")]
     [SerializeField] private Transform _cameraTransform;
@@ -37,12 +43,22 @@ public class PlayerController_CC : MonoBehaviour
     private void Start()
     {
         _cc = GetComponent<CharacterController>();
+        _anim = GetComponent<Animator>();
         if (_cameraTransform == null)
             _cameraTransform = Camera.main.transform;
     }
 
     private void Update()
     {
+        if (_isRolling)
+            return;
+
+        //Roll
+        if (Input.GetKeyDown(KeyCode.C) && !_isRolling && IsGrounded())
+        {
+            StartCoroutine(RollRoutine());
+        }
+
         // Input
         Horizontal = Input.GetAxis("Horizontal");
         Vertical = Input.GetAxis("Vertical");
@@ -114,6 +130,18 @@ public class PlayerController_CC : MonoBehaviour
     public bool IsMoving()
     {
         return _movingTimer > 0.2f;
+    }
+
+    private IEnumerator RollRoutine()
+    {
+        _isRolling = true;
+        _anim.applyRootMotion = true;
+        _anim.SetTrigger("roll");
+
+        yield return new WaitForSeconds(_rollDuration);
+
+        _anim.applyRootMotion = false;
+        _isRolling = false;
     }
 
     // Moving Platforms

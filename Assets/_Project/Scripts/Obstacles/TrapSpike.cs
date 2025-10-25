@@ -21,4 +21,5 @@ public class TrapSpike : MonoBehaviour
             other.gameObject.GetComponent<LifeController>().TakeDamage(_damage);
         }
     }
+
 }

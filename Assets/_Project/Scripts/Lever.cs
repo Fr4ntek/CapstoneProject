@@ -46,6 +46,7 @@ public class Lever : MonoBehaviour
     {
         _activated = true;
         _leverAnimation.Play();
+        AudioManager.Instance.Play("Lever");
 
         if (_wrongLever)
         {
