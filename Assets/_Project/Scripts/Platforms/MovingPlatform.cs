@@ -26,6 +26,11 @@ public class MovingPlatform : MonoBehaviour
                  });
     }
 
+    void OnDestroy()
+    {
+        DOTween.Kill(transform);
+    }
+
 }
 
 

@@ -6,19 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject _deathUI;
-    [SerializeField] GameObject _victoryUI;
-
-    public void ExitGamePauseMenu()
-    {
-        Time.timeScale = 1f;
-        AudioManager.Instance.StopAll();
-        AudioManager.Instance.Play("MainMenu");
-        SceneManager.LoadScene("MainMenu");
-    }
     public void ChangeScene(string sceneName)
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
         switch (sceneName)
         {
             case "Level1":
@@ -35,27 +26,18 @@ public class GameManager : MonoBehaviour
                 break;
         }
         DOTween.KillAll();
+        SaveSystem.ClearCheckpoint();
         SceneManager.LoadScene(sceneName);
     }
 
-    public void ExitGameMainMenu()
+    public void ExitGame()
     {
         Application.Quit();
         Debug.Log("Hai chiuso il gioco");
     }
 
-    public void ShowDeathUI()
+    private void OnApplicationQuit()
     {
-        _deathUI.SetActive(true);
-        AudioManager.Instance.StopAll();
-        Time.timeScale = 0f;
         SaveSystem.ClearCheckpoint();
-    }
-
-    public void ShowVictoryUI()
-    {
-        _victoryUI.SetActive(true);
-        AudioManager.Instance.StopAll();
-        Time.timeScale = 0f;
     }
 }

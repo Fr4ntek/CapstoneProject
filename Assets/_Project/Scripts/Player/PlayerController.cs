@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _fallMultiplier = 1;
     [SerializeField] private float _lowJumpMultiplier = 1;
     [SerializeField] private float _jumpMultiplier = 2;
-    [SerializeField] private GroundChecker _groundChecker;
+   // [SerializeField] private GroundChecker _groundChecker;
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private float _walkSpeed = 5f;
     [SerializeField] private float _runSpeed = 8f;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        if (_groundChecker == null) _groundChecker = GetComponentInChildren<GroundChecker>();
+      //  if (_groundChecker == null) _groundChecker = GetComponentInChildren<GroundChecker>();
     }
 
     private void Update()
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public bool Grounded()
     {
-        if (_groundChecker.IsGrounded) return true;
+       // if (_groundChecker.IsGrounded) return true;
         return false;
     }
 

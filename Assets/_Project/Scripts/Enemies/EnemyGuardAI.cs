@@ -84,7 +84,7 @@ public class EnemyGuardAI : EnemyBaseAI
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<LifeController>().TakeDamage(_damage);
+            collision.GetComponent<LifeController>().RespawnOrDie(false);
         }
     }
 }

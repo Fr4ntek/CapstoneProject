@@ -62,7 +62,7 @@ public class Lever : MonoBehaviour
 
     private IEnumerator FocusOnDoor()
     { 
-        _doorCam.Priority = 11;
+        _doorCam.Priority = 12;
         yield return new WaitForSeconds(_focusDuration);
         _doorCam.Priority = 5;
     }

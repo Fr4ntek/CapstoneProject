@@ -6,7 +6,7 @@ public class GemPicker : MonoBehaviour
     [SerializeField] private float _rotateSpeed = 90f;
     [SerializeField] private GemTypeEnum _gemType;
 
-    private void Start()
+    private void OnEnable()
     {
         transform.DORotate(
             transform.localRotation.eulerAngles + new Vector3(0, 360, 0),
@@ -22,11 +22,13 @@ public class GemPicker : MonoBehaviour
        
         AudioManager.Instance.Play("Gem");
         PlayerStats stats = other.GetComponent<PlayerStats>();
-        if (stats != null)
-            stats.CollectGem(_gemType);
-        
+        stats.CollectGem(_gemType);
+        if (SaveSystem.HasCheckpoint())
+        {
+            stats.RegisterPickup(gameObject);
+        }
         DOTween.Kill(transform);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
 

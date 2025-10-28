@@ -15,6 +15,7 @@ public class LifeController : MonoBehaviour
 
     private bool _isDead = false;
     private UIController _uiController;
+    private CheckpointManager _checkpointManager;
 
     private void Awake()
     {
@@ -25,14 +26,15 @@ public class LifeController : MonoBehaviour
     {
         OnLifeChanged(_hp, _maxHp);
         _uiController = GetComponent<UIController>();
+        _checkpointManager = GetComponent<CheckpointManager>();
     }
 
     public void SetHp(int amount)
     {
         _hp = Mathf.Clamp(amount, 0, _maxHp);
         OnLifeChanged(_hp, _maxHp);
-        
-        if (_hp <= 0) Die();
+
+        if (_hp <= 0) RespawnOrDie(false);
     }
 
     public void AddHp(int amount)
@@ -46,12 +48,29 @@ public class LifeController : MonoBehaviour
         AddHp(-damage);
     }
 
-    public void Die()
+    public void RespawnOrDie(bool timerExpired)
     {
         if (_isDead) return;
-        _isDead = true;
 
-        if (_uiController != null) _uiController.ShowDeathUI();
-        //Destroy(gameObject);
+        if (!timerExpired && SaveSystem.HasCheckpoint())
+        {
+            _isDead = true;
+            StartCoroutine(RestoreCheckpointRoutine(gameObject));
+        }
+        else
+        {
+            _isDead = true;
+            _uiController.ShowDeathUI();
+        }
+    }
+
+    private IEnumerator RestoreCheckpointRoutine(GameObject player)
+    {
+        yield return _uiController.FadeIn();
+
+        _checkpointManager.RestoreCheckpoint(player);
+        _isDead = false;
+
+        yield return _uiController.FadeOut();
     }
 }

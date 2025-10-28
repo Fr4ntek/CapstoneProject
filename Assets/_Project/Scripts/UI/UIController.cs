@@ -24,16 +24,19 @@ public class UIController : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Image _fadeOverlay;
+    [SerializeField] private GameObject _deathUI;
+    [SerializeField] private GameObject _victoryUI;
+    [SerializeField] private GameObject _pauseUI;
 
     [Header("Fade Settings")]
-    [SerializeField] private float _fadeDuration = 0.5f;
+    [SerializeField] private float _fadeDuration = 0.25f;
 
     public int _coinCount = 0;
     private float _timeLeft;
     private bool _isTimeRunning = false;
     private LifeController _lifeController;
     private PlayerStats _playerStats;
-
+    private bool _isPaused;
 
     private void OnEnable()
     {
@@ -41,6 +44,7 @@ public class UIController : MonoBehaviour
         _lifeController = GetComponent<LifeController>();
         _playerStats.OnCoinCollected += UpdateCoinUI;
         _playerStats.OnGemCollected += UpdateGemUI;
+        _playerStats.OnGemsReset += ResetGemUI;
         _lifeController.OnLifeChanged += UpdateHealthBar;
     }
 
@@ -52,25 +56,44 @@ public class UIController : MonoBehaviour
     }
 
     void Start()
-    {   
+    {
         UpdateCoinUI(0);
         SetTimerUI();
     }
-
-    private void SetTimerUI()
-    {
-        _timeLeft = _countdownTime;
-        _isTimeRunning = true;
-    }
-
     void Update()
     {
         UpdateTimerUI();
         if (_timeLeft <= 0f)
         {
             _isTimeRunning = false;
-            _lifeController.Die();
+            _lifeController.RespawnOrDie(true);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseUI();
+        }
+    }
+
+    public void TogglePauseUI()
+    {
+        _isPaused = !_isPaused;
+        Time.timeScale = _isPaused ? 0f : 1f;
+        AudioListener.pause = _isPaused;
+        _pauseUI.SetActive(_isPaused);
+    }
+    public void Resume()
+    {
+        _pauseUI.SetActive(false);
+        Time.timeScale = 1f;
+        _isPaused = false;
+        AudioListener.pause = _isPaused;
+    }
+
+    private void SetTimerUI()
+    {
+        _timeLeft = _countdownTime;
+        _isTimeRunning = true;
     }
 
     private void UpdateTimerUI()
@@ -100,6 +123,15 @@ public class UIController : MonoBehaviour
                 break;
         }
     }
+    public void ResetGemUI()
+    {
+        if( _redGemUI != null && _blueGemUI != null && _redGemUI != null)
+        {
+            _blueGemUI.color = Color.gray;
+            _yellowGemUI.color = Color.gray;
+            _redGemUI.color = Color.gray;
+        }
+    }
 
     private void UpdateCoinUI(int coins)
     {
@@ -114,12 +146,19 @@ public class UIController : MonoBehaviour
 
     public void ShowVictoryUI()
     {
-        _gameManager.ShowVictoryUI();
+        _victoryUI.SetActive(true);
+        AudioManager.Instance.StopAll();
+        AudioManager.Instance.Play("Level2Complete");
+        Time.timeScale = 0f;
     }
 
     public void ShowDeathUI()
     {
-        _gameManager.ShowDeathUI();
+        _deathUI.SetActive(true);
+        AudioManager.Instance.StopAll();
+        //AudioManager.Instance.Play(sceneName);
+        Time.timeScale = 0f;
+        SaveSystem.ClearCheckpoint();
     }
 
     public IEnumerator FadeIn()
@@ -132,10 +171,4 @@ public class UIController : MonoBehaviour
         yield return _fadeOverlay.DOFade(0f, _fadeDuration).WaitForCompletion();
     }
 
-    //public void RefreshGemUI()
-    //{
-    //    redGemUI.color = playerStats.HasGem(GemType.Red) ? Color.white : Color.gray;
-    //    blueGemUI.color = playerStats.HasGem(GemType.Blue) ? Color.white : Color.gray;
-    //    greenGemUI.color = playerStats.HasGem(GemType.Green) ? Color.white : Color.gray;
-    //}
 }

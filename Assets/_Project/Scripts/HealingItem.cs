@@ -15,7 +15,11 @@ public class HealingItem : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<LifeController>().AddHp(_healingAmount);
-            Destroy(gameObject);
+            if (SaveSystem.HasCheckpoint())
+            {
+                other.gameObject.GetComponent<PlayerStats>().RegisterPickup(gameObject);
+            }
+            gameObject.SetActive(false);
         }
     }
 }

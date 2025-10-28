@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
@@ -18,9 +20,13 @@ public class CheckpointManager : MonoBehaviour
         PlayerStats stats = player.GetComponent<PlayerStats>();
         LifeController lc = player.GetComponent<LifeController>();
         lc.SetHp(data.hp);
-        stats.LoadCoinsCheckpoint();
-        //stats.RestoreGems(data.collectedGems);
-
-        // Puoi anche aggiornare timer e UI se serve
+        foreach (var pickup in stats.RecentPickups)
+        {
+            pickup.SetActive(true);
+        }
+        stats.RestoreCoinsCheckpoint(data.collectedCoins);
+        stats.RestoreGemsCheckpoint(data.collectedGems
+                                    .Select(g => Enum.Parse<GemTypeEnum>(g))
+                                       .ToHashSet());
     }
 }

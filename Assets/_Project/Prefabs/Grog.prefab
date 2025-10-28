@@ -1253,8 +1253,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.04
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2428,6 +2428,7 @@ GameObject:
   - component: {fileID: 1421032338831884338}
   - component: {fileID: 3069639502167462384}
   - component: {fileID: 4969393851586438813}
+  - component: {fileID: 8722163524474752397}
   m_Layer: 9
   m_Name: Grog
   m_TagString: Player
@@ -2450,6 +2451,7 @@ Transform:
   m_Children:
   - {fileID: 5093479520944571571}
   - {fileID: 5363217455193965726}
+  - {fileID: 9203063868253636133}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4640497466950820563
@@ -2484,13 +2486,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 4
+  m_Height: 3.8
   m_Radius: 0.7
   m_SlopeLimit: 45
   m_StepOffset: 0.7
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 2.08, z: 0}
+  m_Center: {x: 0, y: 1.95, z: 0}
 --- !u!114 &3098000857360315052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2503,7 +2505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2f02b30ea00ef4e9b00f51be2ea3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 4
+  _walkSpeed: 5.5
   _runSpeed: 12
   _rotationSpeed: 8
   _jumpHeight: 3
@@ -2541,21 +2543,6 @@ MonoBehaviour:
   _maxHp: 100
   _hp: 0
   _fullHpOnStart: 1
-  onLifeChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1421032338831884338}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: UpdateHealthBar
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &263034717744626212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2620,11 +2607,16 @@ MonoBehaviour:
   _coinCounterText: {fileID: 0}
   _coinWarningMessage: {fileID: 0}
   _timerText: {fileID: 0}
-  _countdownTime: 120
+  _countdownTime: 180
   _redGemUI: {fileID: 0}
   _yellowGemUI: {fileID: 0}
   _blueGemUI: {fileID: 0}
   _gameManager: {fileID: 0}
+  _fadeOverlay: {fileID: 0}
+  _deathUI: {fileID: 0}
+  _victoryUI: {fileID: 0}
+  _pauseUI: {fileID: 0}
+  _fadeDuration: 0.5
   _coinCount: 0
 --- !u!95 &3069639502167462384
 Animator:
@@ -2655,6 +2647,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7558916575021720256}
   m_Enabled: 1
+--- !u!114 &8722163524474752397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558916575021720256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64f670874acc194e9381ea1ef7c3411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7636839906851792292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,6 +2972,37 @@ Transform:
   m_Children:
   - {fileID: 7972644309501914245}
   m_Father: {fileID: 777810997932460331}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9068424556653534045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9203063868253636133}
+  m_Layer: 9
+  m_Name: pivotLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9203063868253636133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068424556653534045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.319, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1620891403192503675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9118233427948468633
 GameObject:

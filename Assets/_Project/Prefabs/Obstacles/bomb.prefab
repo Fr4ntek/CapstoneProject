@@ -226,7 +226,7 @@ AudioSource:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 0.003967285
       inSlope: -0.10003988
       outSlope: -0.10003988
       tangentMode: 0

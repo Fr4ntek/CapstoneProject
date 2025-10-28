@@ -34,17 +34,19 @@ public class CoinPicker : MonoBehaviour
         {
             AudioManager.Instance.Play("Coin");
             PlayerStats stats = other.GetComponent<PlayerStats>();
-            if (stats != null)
-                stats.AddCoin(_coinID);
+            stats.AddCoin(_coinID);
+            if (SaveSystem.HasCheckpoint())
+            {
+                stats.RegisterPickup(gameObject);
+            }
 
             DOTween.Kill(transform);
             gameObject.SetActive(false);
         }
     }
 
-    public void ResetCoin(PlayerStats stats)
+    void OnDestroy()
     {
-        if (!stats.CollectedCoinsContains(_coinID))
-            gameObject.SetActive(true);
+        DOTween.Kill(transform);
     }
 }

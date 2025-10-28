@@ -15,8 +15,10 @@ public class CheckpointFlag : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _stats = other.GetComponent<PlayerStats>();
+            gameObject.transform.rotation = new Quaternion(0,180,0,0);
+            AudioManager.Instance.Play("Checkpoint");
             SaveCheckpoint(other.transform.position);
-            _stats.SaveCoinsCheckpoint();
+            //_stats.SaveCoinsCheckpoint();
         }
     }
 
@@ -37,6 +39,7 @@ public class CheckpointFlag : MonoBehaviour
         };
 
         SaveSystem.SaveCheckpoint(data);
+        _stats.ClearRecentPickups();
         _isSaved = true;
     }
 }

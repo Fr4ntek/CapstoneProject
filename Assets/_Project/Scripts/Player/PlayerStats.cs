@@ -11,17 +11,20 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int _requiredGems = 3;
 
-    private HashSet<int> _collectedCoinIDs = new HashSet<int>();
-    private HashSet<int> _checkpointCollectedCoinIDs = new HashSet<int>();
+  
     private HashSet<GemTypeEnum> _collectedGems = new HashSet<GemTypeEnum>();
 
-    public int Coins { get; private set; } = 0;
+    // salvo tutto cio che prendo dopo l'ultimo checkpoint
+    private List<GameObject> _recentPickups = new List<GameObject>();
+    public IReadOnlyList<GameObject> RecentPickups => _recentPickups;
+
+    public int Coins { get; set; } = 0;
     public int Health { get; private set; }
     public IReadOnlyCollection<GemTypeEnum> CollectedGems => _collectedGems;
-    public bool CollectedCoinsContains(int coinID) => _collectedCoinIDs.Contains(coinID);
 
     public event Action<int> OnCoinCollected;
     public event Action<GemTypeEnum> OnGemCollected;
+    public event Action OnGemsReset;
     public event Action OnAllGemsCollected;
     private CoinPicker[] _allCoins;
     private LifeController _lifeController;
@@ -49,33 +52,15 @@ public class PlayerStats : MonoBehaviour
 
     public void AddCoin(int coinID)
     {
-        if (_collectedCoinIDs.Add(coinID))
-        {
-            Coins += 1;
-            // Lancio evento per aggiornare UI
-            OnCoinCollected(Coins);
-        }
-    }
-
-    public void SaveCoinsCheckpoint()
-    {
-        _checkpointCollectedCoinIDs = new HashSet<int>(_collectedCoinIDs);
-    }
-
-    public void LoadCoinsCheckpoint()
-    {
-        _collectedCoinIDs = new HashSet<int>(_checkpointCollectedCoinIDs);
-        Coins = _collectedCoinIDs.Count;
+        Coins += 1;
+        // Lancio evento per aggiornare UI
         OnCoinCollected(Coins);
-        ResetCoinsCheckpoint();
     }
 
-    public void ResetCoinsCheckpoint()
+    public void RestoreCoinsCheckpoint(int coins)
     {
-        foreach (var coin in _allCoins)
-        {
-            coin.ResetCoin(this);
-        }
+        Coins = coins;
+        OnCoinCollected(Coins);
     }
 
     public void CollectGem(GemTypeEnum gemType)
@@ -90,5 +75,25 @@ public class PlayerStats : MonoBehaviour
             // Lancio evento per aprire la porta finale
             OnAllGemsCollected();
         } 
+    }
+
+    public void RestoreGemsCheckpoint(HashSet<GemTypeEnum> restoredGems)
+    {
+        _collectedGems = restoredGems;
+        OnGemsReset();
+        foreach (var gem in _collectedGems)
+        {
+            OnGemCollected(gem);
+        }
+    }
+
+    public void RegisterPickup(GameObject pickup)
+    {
+        _recentPickups.Add(pickup);
+    }
+
+    public void ClearRecentPickups()
+    {
+        _recentPickups.Clear();
     }
 }

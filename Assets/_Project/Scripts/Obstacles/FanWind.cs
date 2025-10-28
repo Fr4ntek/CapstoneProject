@@ -17,8 +17,8 @@ public class FanWind : MonoBehaviour
 
     private void Update()
     {
-
         _fan.transform.Rotate(Vector3.up, _rotationSpeed * Time.deltaTime);
+
         if (_playerInRange && _playerController != null)
         {
             Vector3 globalWindDir = transform.TransformDirection(_windDirection.normalized);

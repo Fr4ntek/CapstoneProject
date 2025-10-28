@@ -29,4 +29,9 @@ public class MovingSaw : MonoBehaviour
             other.gameObject.GetComponent<LifeController>().TakeDamage(_damage);
         }
     }
+
+    void OnDestroy()
+    {
+        DOTween.Kill(transform); 
+    }
 }
