@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class VictoryPoint : MonoBehaviour
 {
-    [SerializeField] GameObject canvas;
+    [SerializeField] int _extraPoints = 1000;
+
 
     private void OnTriggerEnter(Collider other)
     {
         UIController ui = other.GetComponent<UIController>();
-        if (ui != null) ui.ShowVictoryUI();
+        if (ui != null) ui.ShowVictoryUI(_extraPoints);
     }
 }

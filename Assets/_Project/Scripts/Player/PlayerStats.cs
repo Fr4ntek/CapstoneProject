@@ -26,13 +26,7 @@ public class PlayerStats : MonoBehaviour
     public event Action<GemTypeEnum> OnGemCollected;
     public event Action OnGemsReset;
     public event Action OnAllGemsCollected;
-    private CoinPicker[] _allCoins;
     private LifeController _lifeController;
-
-    private void Awake()
-    {
-        _allCoins = FindObjectsOfType<CoinPicker>();
-    }
 
     private void OnEnable()
     {
@@ -50,8 +44,9 @@ public class PlayerStats : MonoBehaviour
         Health = hp;
     }
 
-    public void AddCoin(int coinID)
+    public void AddCoin()
     {
+        GameSession.Instance.AddCoin(1);
         Coins += 1;
         // Lancio evento per aggiornare UI
         OnCoinCollected(Coins);

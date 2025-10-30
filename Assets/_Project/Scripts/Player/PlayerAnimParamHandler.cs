@@ -13,11 +13,10 @@ public class PlayerAnimParamHandler : MonoBehaviour
 
     private bool _groundedLastFrame = true;
     private float _groundedTimer = 0f;
-    [SerializeField] private float _groundedBuffer = 0.1f; // 100ms
+    [SerializeField] private float _groundedBuffer = 0.3f; // 100ms
 
     private Animator _anim;
     private PlayerController_CC _player;
-    // private Rigidbody _rb;
 
     void Start()
     {

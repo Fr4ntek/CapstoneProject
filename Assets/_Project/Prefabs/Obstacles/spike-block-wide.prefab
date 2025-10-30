@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  _damageCooldown: 1
   _triggerPoint: 1
 --- !u!136 &2242051114065540858
 CapsuleCollider:

@@ -5,19 +5,8 @@ using UnityEngine;
 
 public class CoinPicker : MonoBehaviour
 {
-    [SerializeField] private int _coinID = 0;
     [SerializeField] private float _rotateSpeed = 90f;
-
-    // contatore globale per utilizzo checkpoint
-    private static int _nextID = 0;
-
-    private void Awake()
-    {
-        if (_coinID == 0)
-        {
-            _coinID = ++_nextID;
-        }
-    }
+    
     private void OnEnable()
     {
         transform.DORotate(
@@ -34,7 +23,7 @@ public class CoinPicker : MonoBehaviour
         {
             AudioManager.Instance.Play("Coin");
             PlayerStats stats = other.GetComponent<PlayerStats>();
-            stats.AddCoin(_coinID);
+            stats.AddCoin();
             if (SaveSystem.HasCheckpoint())
             {
                 stats.RegisterPickup(gameObject);

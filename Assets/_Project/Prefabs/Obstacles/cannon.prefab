@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bombPool: {fileID: 0}
-  _fireRate: 1
+  _fireRate: 0.7
   _launchForce: 5
   _launchAngle: 45
   _firePoint: {fileID: 6484959619772354585}

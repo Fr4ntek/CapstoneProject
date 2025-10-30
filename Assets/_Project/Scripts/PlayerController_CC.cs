@@ -53,8 +53,6 @@ public class PlayerController_CC : MonoBehaviour
         if (_isRolling)
             return;
 
-        //if (!_isRolling) _anim.applyRootMotion = false;
-
         //Roll
         if (Input.GetKeyDown(KeyCode.C) && !_isRolling && IsGrounded())
         {
@@ -137,8 +135,8 @@ public class PlayerController_CC : MonoBehaviour
     private IEnumerator RollRoutine()
     {
         _isRolling = true;
-        _anim.applyRootMotion = true;
         _anim.SetTrigger("roll");
+        _anim.applyRootMotion = true;
 
         yield return new WaitForSeconds(_rollDuration);
 

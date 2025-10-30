@@ -12,10 +12,12 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _coinCounterText;
     [SerializeField] private GameObject _coinWarningMessage;
 
-    [Header("Timer")]
+    [Header("Timer/Score")]
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private float _countdownTime = 60f;
-    
+    [SerializeField] private TextMeshProUGUI _scoreText;
+    private int _finalScore = 0;
+
     [Header("Gems")]
     [SerializeField] private Image _redGemUI;
     [SerializeField] private Image _yellowGemUI;
@@ -63,7 +65,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         UpdateTimerUI();
-        if (_timeLeft <= 0f)
+        if (GameSession.Instance.timeLeft <= 0f)
         {
             _isTimeRunning = false;
             _lifeController.RespawnOrDie(true);
@@ -92,18 +94,18 @@ public class UIController : MonoBehaviour
 
     private void SetTimerUI()
     {
-        _timeLeft = _countdownTime;
+        _countdownTime = GameSession.Instance.timeLeft;
         _isTimeRunning = true;
     }
 
     private void UpdateTimerUI()
     {
         if (!_isTimeRunning) return;
-        _timeLeft -= Time.deltaTime;
-        _timeLeft = Mathf.Max(0f, _timeLeft);
+        GameSession.Instance.timeLeft -= Time.deltaTime;
+        GameSession.Instance.timeLeft = Mathf.Max(0f, GameSession.Instance.timeLeft);
 
-        int minutes = Mathf.FloorToInt(_timeLeft / 60f);
-        int seconds = Mathf.FloorToInt(_timeLeft % 60f);
+        int minutes = Mathf.FloorToInt(GameSession.Instance.timeLeft / 60f);
+        int seconds = Mathf.FloorToInt(GameSession.Instance.timeLeft % 60f);
 
         _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
@@ -144,20 +146,35 @@ public class UIController : MonoBehaviour
         _healthBarSprite.color = _gradient.Evaluate(_healthBarSprite.fillAmount);
     }
 
-    public void ShowVictoryUI()
+    public void ShowVictoryUI(int extraPoints)
     {
+        GameOver(extraPoints);
+        AudioManager.Instance.Play("Level2Completed");
         _victoryUI.SetActive(true);
-        AudioManager.Instance.StopAll();
-        AudioManager.Instance.Play("Level2Complete");
-        Time.timeScale = 0f;
+        _scoreText.text = "Score: " + _finalScore;
     }
 
     public void ShowDeathUI()
     {
+        GameOver(0);
+        AudioManager.Instance.Play("GameOver"); 
         _deathUI.SetActive(true);
-        AudioManager.Instance.StopAll();
-        //AudioManager.Instance.Play(sceneName);
+        _scoreText.text = "Score: " + _finalScore;
+    }
+
+    private void GameOver(int extraPoints)
+    {
         Time.timeScale = 0f;
+        AudioManager.Instance.StopAll();
+
+        int coins = GameSession.Instance.collectedCoins;
+        int gems = _playerStats.CollectedGems.Count;
+        float elapsedTime = _countdownTime - GameSession.Instance.timeLeft;
+        int hp = _playerStats.Health;
+        Debug.Log($"Coins: {coins} - Gems: {gems} - ElapsedTime: {elapsedTime} - HP: {hp}");
+
+        _finalScore += ScoreManager.Instance.CalculateScore(coins, gems, elapsedTime, hp, extraPoints);
+        ScoreManager.Instance.SaveScore();
         SaveSystem.ClearCheckpoint();
     }
 

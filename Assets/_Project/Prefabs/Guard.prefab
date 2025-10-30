@@ -812,6 +812,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   _subdivisions: 12
+  _timeToLosePlayer: 3
   _waypoints:
   - {fileID: 0}
   - {fileID: 0}

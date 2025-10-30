@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
             case "MainMenu":
                 AudioManager.Instance.StopAll();
                 AudioManager.Instance.Play(sceneName);
+                GameSession.Instance.ResetCoins();
                 break;
         }
         DOTween.KillAll();

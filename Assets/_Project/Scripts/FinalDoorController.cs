@@ -7,9 +7,10 @@ using UnityEngine.ProBuilder.Shapes;
 public class FinalDoorController : MonoBehaviour
 {
     [SerializeField] private PlayerStats _playerStats;
-    [SerializeField] private ParticleSystem exitGlow;
+    [SerializeField] private ParticleSystem _exitGlow;
     [SerializeField] private CinemachineVirtualCamera _doorCam;
     [SerializeField] private float _focusDuration = 2f;
+    [SerializeField] private AudioSource _victoryPointAudioSource;
 
     private bool _isOpened;
     
@@ -28,9 +29,11 @@ public class FinalDoorController : MonoBehaviour
     {
         if (_isOpened) return;
         _isOpened = true;
+        _victoryPointAudioSource.Play();
+        AudioManager.Instance.Play("FinalDoorOpen");
         GetComponentInParent<Animation>().Play();
         GetComponent<Collider>().enabled = false;
-        exitGlow.Play();
+        _exitGlow.Play();
         StartCoroutine(FocusOnDoor());
     }
 

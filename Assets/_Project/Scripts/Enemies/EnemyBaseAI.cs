@@ -23,6 +23,11 @@ public class EnemyBaseAI : MonoBehaviour
     [SerializeField] protected int _subdivisions = 12;
     protected LineRenderer _lineRenderer;
 
+    [Header("Chase Settings")]
+    [SerializeField] private float _timeToLosePlayer = 5f;
+    private Vector3 _lastKnownPlayerPos;
+    private float _lostPlayerTimer = 0f;
+
     [Header("Patrol Settings")]
     [SerializeField] protected Transform[] _waypoints;
     [SerializeField] protected AIState _currentState = AIState.Patrolling;
@@ -72,7 +77,7 @@ public class EnemyBaseAI : MonoBehaviour
                 break;
         }
 
-        if (_currentState != AIState.Chasing && CanSeePlayer())
+        if (_currentState != AIState.Chasing && CanSeePlayer() && IsPlayerOnNavMesh())
         {
             ChangeState(AIState.Chasing);
         }
@@ -126,11 +131,31 @@ public class EnemyBaseAI : MonoBehaviour
     {
         if (_player == null) return;
 
+        if (!IsPlayerOnNavMesh())
+        {
+            ChangeState(AIState.Searching);
+            return;
+        }
+
         _agent.SetDestination(_player.position);
 
         if (!CanSeePlayer())
         {
-            ChangeState(AIState.Searching);
+            if (_lostPlayerTimer == 0f)
+            {
+                _lastKnownPlayerPos = _player.position; 
+                _agent.SetDestination(_lastKnownPlayerPos); 
+            }
+            _lostPlayerTimer += Time.deltaTime; 
+            if (_lostPlayerTimer >= _timeToLosePlayer)
+            {
+                ChangeState(AIState.Searching);
+                _lostPlayerTimer = 0f;
+            }
+        }
+        else
+        {
+            _lostPlayerTimer = 0f; 
         }
     }
 
@@ -140,13 +165,13 @@ public class EnemyBaseAI : MonoBehaviour
     // Search state
     protected virtual void SearchState() 
     {
-        // Rimane fermo qualche secondo poi torna al punto iniziale
         ChangeLineColor(Color.white);
         _searchTimer += Time.deltaTime;
 
-        if (CanSeePlayer())
+        if (CanSeePlayer() && IsPlayerOnNavMesh())
         {
             ChangeState(AIState.Chasing);
+            _searchTimer = 0f;
             return;
         }
 
@@ -214,6 +239,11 @@ public class EnemyBaseAI : MonoBehaviour
     {
         _lineRenderer.startColor = color;
         _lineRenderer.endColor = color;
+    }
+
+    private bool IsPlayerOnNavMesh()
+    {
+        return NavMesh.SamplePosition(_player.position, out _, 5f, NavMesh.AllAreas);
     }
 
 }

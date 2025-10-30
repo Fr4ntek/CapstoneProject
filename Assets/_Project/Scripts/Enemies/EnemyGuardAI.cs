@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 public class EnemyGuardAI : EnemyBaseAI
 {
     [Header("NavMesh Speeds")]
-    public float _patrolSpeed = 2.4f;
-    public float _chaseSpeed = 5f;
+    [SerializeField] private float _patrolSpeed = 2.4f;
+    [SerializeField] private float _chaseSpeed = 5f;
 
     private Animator _animator;
 
@@ -22,16 +22,23 @@ public class EnemyGuardAI : EnemyBaseAI
     protected override void ChangeState(AIState newState)
     {
         base.ChangeState(newState);
+
         switch (newState)
         {
-            case AIState.Patrolling:
-                _agent.speed = _patrolSpeed;
-                break;
             case AIState.Chasing:
             case AIState.Alerted:
+                if (!AudioManager.Instance.IsPlaying("ChaseMusic"))
+                {
+                    AudioManager.Instance.Play("ChaseMusic");
+                }
                 _agent.speed = _chaseSpeed;
                 break;
+            case AIState.Patrolling:
             case AIState.ReturningToPost:
+                if (AudioManager.Instance.IsPlaying("ChaseMusic")) 
+                {
+                    AudioManager.Instance.Stop("ChaseMusic");
+                }
                 _agent.speed = _patrolSpeed;
                 break;
         }
