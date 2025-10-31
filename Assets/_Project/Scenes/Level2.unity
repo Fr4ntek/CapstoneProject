@@ -3330,7 +3330,7 @@ Transform:
   m_GameObject: {fileID: 332649632}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.904885, y: 3.2, z: 10.204378}
+  m_LocalPosition: {x: 7.904883, y: 3.2, z: 10.204381}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6141,7 +6141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614970483}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.013296405, y: 0.95986754, z: -0.04619109, w: -0.2763041}
+  m_LocalRotation: {x: -0.013296405, y: 0.95986754, z: -0.046191085, w: -0.27630404}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7849,7 +7849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769111415}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.008281663, y: 0.9605475, z: -0.028770104, w: -0.27649993}
+  m_LocalRotation: {x: -0.008281652, y: 0.96054757, z: -0.028770087, w: -0.27649978}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12687,8 +12687,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131121335}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018320037, y: 0.9588685, z: -0.06364296, w: -0.27601653}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.018320024, y: 0.95886856, z: -0.06364295, w: -0.27601635}
+  m_LocalPosition: {x: -0.0000014305115, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16568,6 +16568,136 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7246706038678309765, guid: 1f8beb64ee32e6045b985bee53fd76e1, type: 3}
   m_PrefabInstance: {fileID: 1741961251}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1498147508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498147510}
+  - component: {fileID: 1498147509}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1498147509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498147508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0321efc5b157633478586460d00bef02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MainMenu
+    clip: {fileID: 8300000, guid: d9b2ceea09ecd0a428eb48d2510155e2, type: 3}
+    volume: 0.16
+    loop: 1
+    source: {fileID: 0}
+  - name: Level1
+    clip: {fileID: 8300000, guid: 6e8538cd104e51e4aa3177918b7c0666, type: 3}
+    volume: 0.12
+    loop: 1
+    source: {fileID: 0}
+  - name: Level1Completed
+    clip: {fileID: 8300000, guid: 60f6673787edbc6478ea4ff0a332d667, type: 3}
+    volume: 0.2
+    loop: 0
+    source: {fileID: 0}
+  - name: Checkpoint
+    clip: {fileID: 8300000, guid: 1bd1c89792ed0094e9331e607ee781a8, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: Coin
+    clip: {fileID: 8300000, guid: dfeae8dbb82dc4948a01c66928f6d97d, type: 3}
+    volume: 0.2
+    loop: 0
+    source: {fileID: 0}
+  - name: Level2
+    clip: {fileID: 8300000, guid: dc2e8c18056604a49be31bbc38fb5bfe, type: 3}
+    volume: 0.12
+    loop: 1
+    source: {fileID: 0}
+  - name: Level2Completed
+    clip: {fileID: 8300000, guid: 7030a9fa9210dc546bb5f657b11ca00e, type: 3}
+    volume: 0.2
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 71a94c74c0b6d8f4a99ff5c1ea3c9079, type: 3}
+    volume: 0.2
+    loop: 0
+    source: {fileID: 0}
+  - name: CorrectCombination
+    clip: {fileID: 8300000, guid: 478bf33379b20104fa9cd4bd04c39e77, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: WrongCombination
+    clip: {fileID: 8300000, guid: 33e2d14e296a38f4bb2ad5c84f9854ee, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: ButtonPress
+    clip: {fileID: 8300000, guid: 2ffc53d0eff4ccd40a21672d92fb9343, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: ChestOpening
+    clip: {fileID: 8300000, guid: 04e1561f085b1604f9f739d282f393b1, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: ChaseMusic
+    clip: {fileID: 8300000, guid: 3b5615d4f88a9d044914db672b7344cd, type: 3}
+    volume: 0.12
+    loop: 1
+    source: {fileID: 0}
+  - name: Gem
+    clip: {fileID: 8300000, guid: 0a4a4a61f0604ea4e81c4fce54a9e767, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: Lever
+    clip: {fileID: 8300000, guid: 95fef487f7cafe54c97c88612cb8b197, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: Alarm
+    clip: {fileID: 8300000, guid: 48319c78854c5a54eaaa9273f0dc12c8, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+  - name: FinalDoorOpen
+    clip: {fileID: 8300000, guid: ecbb86f932a1eae41a8dbf5b3b83eeb5, type: 3}
+    volume: 0.12
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1498147510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498147508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.76685, y: 23.290518, z: -53.968742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1501743548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1876912754376588463, guid: 60dc0f30e1324664d90e1b8488ce86bc, type: 3}
@@ -30498,6 +30628,7 @@ SceneRoots:
   - {fileID: 1149099627}
   - {fileID: 1426078812}
   - {fileID: 1742418055}
+  - {fileID: 1498147510}
   - {fileID: 794897045}
   - {fileID: 332649634}
   - {fileID: 1104611104}
