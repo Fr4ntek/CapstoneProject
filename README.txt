@@ -1,4 +1,4 @@
-Build: https://drive.google.com/file/d/1FX_ofVrvWNnFzILcNxgEleHsSGuMoDmn/view?usp=drive_link
+Build: https://drive.google.com/file/d/1dZiRbmiUe74KCb8di4kr-sVFD-_0EMtJ/view?usp=drive_link
 
 Model by Sketchfab 
 License: CC Attribution https://creativecommons.org/licenses/by/4.0/
