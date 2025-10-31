@@ -1254,7 +1254,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.04
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2607,7 +2607,8 @@ MonoBehaviour:
   _coinCounterText: {fileID: 0}
   _coinWarningMessage: {fileID: 0}
   _timerText: {fileID: 0}
-  _countdownTime: 180
+  _countdownTime: 240
+  _scoreText: {fileID: 0}
   _redGemUI: {fileID: 0}
   _yellowGemUI: {fileID: 0}
   _blueGemUI: {fileID: 0}
@@ -2616,7 +2617,7 @@ MonoBehaviour:
   _deathUI: {fileID: 0}
   _victoryUI: {fileID: 0}
   _pauseUI: {fileID: 0}
-  _fadeDuration: 0.5
+  _fadeDuration: 0.25
   _coinCount: 0
 --- !u!95 &3069639502167462384
 Animator:

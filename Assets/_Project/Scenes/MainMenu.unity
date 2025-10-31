@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 318cba05e40791e468028f206d39e2d4, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -877,87 +877,87 @@ MonoBehaviour:
   sounds:
   - name: MainMenu
     clip: {fileID: 8300000, guid: d9b2ceea09ecd0a428eb48d2510155e2, type: 3}
-    volume: 0.04
+    volume: 0.16
     loop: 1
     source: {fileID: 0}
   - name: Level1
     clip: {fileID: 8300000, guid: 6e8538cd104e51e4aa3177918b7c0666, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 1
     source: {fileID: 0}
   - name: Level1Completed
     clip: {fileID: 8300000, guid: 60f6673787edbc6478ea4ff0a332d667, type: 3}
-    volume: 0.05
+    volume: 0.2
     loop: 0
     source: {fileID: 0}
   - name: Checkpoint
     clip: {fileID: 8300000, guid: 1bd1c89792ed0094e9331e607ee781a8, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: Coin
     clip: {fileID: 8300000, guid: dfeae8dbb82dc4948a01c66928f6d97d, type: 3}
-    volume: 0.05
+    volume: 0.2
     loop: 0
     source: {fileID: 0}
   - name: Level2
     clip: {fileID: 8300000, guid: dc2e8c18056604a49be31bbc38fb5bfe, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 1
     source: {fileID: 0}
   - name: Level2Completed
     clip: {fileID: 8300000, guid: 7030a9fa9210dc546bb5f657b11ca00e, type: 3}
-    volume: 0.05
+    volume: 0.2
     loop: 0
     source: {fileID: 0}
   - name: GameOver
     clip: {fileID: 8300000, guid: 71a94c74c0b6d8f4a99ff5c1ea3c9079, type: 3}
-    volume: 0.05
+    volume: 0.2
     loop: 0
     source: {fileID: 0}
   - name: CorrectCombination
     clip: {fileID: 8300000, guid: 478bf33379b20104fa9cd4bd04c39e77, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: WrongCombination
     clip: {fileID: 8300000, guid: 33e2d14e296a38f4bb2ad5c84f9854ee, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: ButtonPress
     clip: {fileID: 8300000, guid: 2ffc53d0eff4ccd40a21672d92fb9343, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: ChestOpening
     clip: {fileID: 8300000, guid: 04e1561f085b1604f9f739d282f393b1, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: ChaseMusic
     clip: {fileID: 8300000, guid: 3b5615d4f88a9d044914db672b7344cd, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 1
     source: {fileID: 0}
   - name: Gem
     clip: {fileID: 8300000, guid: 0a4a4a61f0604ea4e81c4fce54a9e767, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: Lever
     clip: {fileID: 8300000, guid: 95fef487f7cafe54c97c88612cb8b197, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: Alarm
     clip: {fileID: 8300000, guid: 48319c78854c5a54eaaa9273f0dc12c8, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
   - name: FinalDoorOpen
     clip: {fileID: 8300000, guid: ecbb86f932a1eae41a8dbf5b3b83eeb5, type: 3}
-    volume: 0.03
+    volume: 0.12
     loop: 0
     source: {fileID: 0}
 --- !u!4 &635418884

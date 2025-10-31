@@ -20964,101 +20964,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.3, y: 3, z: 1.05}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!1 &1532100967
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1532100969}
-  - component: {fileID: 1532100968}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1532100968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532100967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0321efc5b157633478586460d00bef02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Level1
-    clip: {fileID: 8300000, guid: 4b41e2617235b1d4592ab5d92ca59d90, type: 3}
-    volume: 0.04
-    loop: 1
-    source: {fileID: 0}
-  - name: MainMenu
-    clip: {fileID: 8300000, guid: d9b2ceea09ecd0a428eb48d2510155e2, type: 3}
-    volume: 0.01
-    loop: 1
-    source: {fileID: 0}
-  - name: Coin
-    clip: {fileID: 8300000, guid: dfeae8dbb82dc4948a01c66928f6d97d, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
-  - name: Bomb
-    clip: {fileID: 8300000, guid: d9c7ebc228dfcf84592c63e800b8f941, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
-  - name: CorrectCombination
-    clip: {fileID: 8300000, guid: 478bf33379b20104fa9cd4bd04c39e77, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
-  - name: WrongCombination
-    clip: {fileID: 8300000, guid: 33e2d14e296a38f4bb2ad5c84f9854ee, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
-  - name: ButtonPress
-    clip: {fileID: 8300000, guid: 2ffc53d0eff4ccd40a21672d92fb9343, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
-  - name: ChestOpening
-    clip: {fileID: 8300000, guid: 04e1561f085b1604f9f739d282f393b1, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
-  - name: Checkpoint
-    clip: {fileID: 8300000, guid: 1bd1c89792ed0094e9331e607ee781a8, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
-  - name: LevelCompleted
-    clip: {fileID: 8300000, guid: 60f6673787edbc6478ea4ff0a332d667, type: 3}
-    volume: 0.03
-    loop: 0
-    source: {fileID: 0}
---- !u!4 &1532100969
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532100967}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.76685, y: 23.290518, z: -53.968742}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1537766576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29227,14 +29132,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 376572884}
     - target: {fileID: 1421032338831884338, guid: 0fef9b59f1512a144aad7d7e179f255f, type: 3}
-      propertyPath: _fadeDuration
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1421032338831884338, guid: 0fef9b59f1512a144aad7d7e179f255f, type: 3}
-      propertyPath: _countdownTime
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 1421032338831884338, guid: 0fef9b59f1512a144aad7d7e179f255f, type: 3}
       propertyPath: _coinCounterText
       value: 
       objectReference: {fileID: 393241111}
@@ -29825,7 +29722,6 @@ SceneRoots:
   - {fileID: 80480854}
   - {fileID: 376572883}
   - {fileID: 1942927633}
-  - {fileID: 1532100969}
   - {fileID: 167537667}
   - {fileID: 3222566228262390659}
   - {fileID: 526818554}
