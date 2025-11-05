@@ -13,14 +13,20 @@ public class GameManager : MonoBehaviour
         switch (sceneName)
         {
             case "Level1":
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 AudioManager.Instance.StopAll();
                 AudioManager.Instance.Play(sceneName);
                 break;
             case "Level2":
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 AudioManager.Instance.StopAll();
                 AudioManager.Instance.Play(sceneName);
                 break;
             case "MainMenu":
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 AudioManager.Instance.StopAll();
                 AudioManager.Instance.Play(sceneName);
                 GameSession.Instance.ResetCoins();

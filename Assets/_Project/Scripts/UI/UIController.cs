@@ -83,6 +83,16 @@ public class UIController : MonoBehaviour
         Time.timeScale = _isPaused ? 0f : 1f;
         AudioListener.pause = _isPaused;
         _pauseUI.SetActive(_isPaused);
+        if (_isPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
     public void Resume()
     {
@@ -90,6 +100,8 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1f;
         _isPaused = false;
         AudioListener.pause = _isPaused;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void SetTimerUI()
@@ -166,6 +178,8 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 0f;
         AudioManager.Instance.StopAll();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         int coins = GameSession.Instance.collectedCoins;
         int gems = _playerStats.CollectedGems.Count;

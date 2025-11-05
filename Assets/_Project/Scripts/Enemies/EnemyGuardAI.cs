@@ -35,11 +35,13 @@ public class EnemyGuardAI : EnemyBaseAI
                 break;
             case AIState.Patrolling:
             case AIState.ReturningToPost:
-                if (AudioManager.Instance.IsPlaying("ChaseMusic")) 
+                _agent.speed = _patrolSpeed;
+                break;
+            case AIState.Searching:
+                if (AudioManager.Instance.IsPlaying("ChaseMusic"))
                 {
                     AudioManager.Instance.Stop("ChaseMusic");
                 }
-                _agent.speed = _patrolSpeed;
                 break;
         }
         UpdateAnimator();

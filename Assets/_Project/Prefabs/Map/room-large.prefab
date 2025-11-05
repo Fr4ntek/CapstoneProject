@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2473475490045429679}
   - component: {fileID: 3644980937627868621}
   - component: {fileID: 7956292946661014106}
+  - component: {fileID: 6429152881534931804}
   m_Layer: 6
   m_Name: room-large
   m_TagString: Untagged
@@ -106,3 +107,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3233246041977779252, guid: d08072f057356dd4b82a88becd50780f, type: 3}
+--- !u!65 &6429152881534931804
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5398995786811661810}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 36, y: 1, z: 36}
+  m_Center: {x: 0, y: -0.45, z: 0}
