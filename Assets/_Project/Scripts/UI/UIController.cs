@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private float _fadeDuration = 0.25f;
 
     public int _coinCount = 0;
-    private float _timeLeft;
+    private bool _canPause = true;
     private bool _isTimeRunning = false;
     private LifeController _lifeController;
     private PlayerStats _playerStats;
@@ -71,7 +71,7 @@ public class UIController : MonoBehaviour
             _lifeController.RespawnOrDie(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (_canPause && Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseUI();
         }
@@ -177,6 +177,7 @@ public class UIController : MonoBehaviour
     private void GameOver(int extraPoints)
     {
         Time.timeScale = 0f;
+        _canPause = false;
         AudioManager.Instance.StopAll();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
