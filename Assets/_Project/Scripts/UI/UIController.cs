@@ -15,7 +15,8 @@ public class UIController : MonoBehaviour
     [Header("Timer/Score")]
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private float _countdownTime = 60f;
-    [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _winScoreText;
+    [SerializeField] private TextMeshProUGUI _deathScoreText;
     private int _finalScore = 0;
 
     [Header("Gems")]
@@ -163,7 +164,7 @@ public class UIController : MonoBehaviour
         GameOver(extraPoints);
         AudioManager.Instance.Play("Level2Completed");
         _victoryUI.SetActive(true);
-        _scoreText.text = "Score: " + _finalScore;
+        _winScoreText.text = "Score: " + _finalScore;
     }
 
     public void ShowDeathUI()
@@ -171,7 +172,7 @@ public class UIController : MonoBehaviour
         GameOver(0);
         AudioManager.Instance.Play("GameOver"); 
         _deathUI.SetActive(true);
-        _scoreText.text = "Score: " + _finalScore;
+        _deathScoreText.text = "Score: " + _finalScore;
     }
 
     private void GameOver(int extraPoints)
@@ -191,6 +192,7 @@ public class UIController : MonoBehaviour
         _finalScore += ScoreManager.Instance.CalculateScore(coins, gems, elapsedTime, hp, extraPoints);
         ScoreManager.Instance.SaveScore();
         SaveSystem.ClearCheckpoint();
+        GameSession.Instance.ResetSession();
     }
 
     public IEnumerator FadeIn()

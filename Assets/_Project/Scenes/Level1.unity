@@ -1094,7 +1094,7 @@ Transform:
   m_GameObject: {fileID: 80480852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.429493, y: 9.850172, z: -15.471606}
+  m_LocalPosition: {x: 1.4294949, y: 9.850172, z: -15.471606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19151,7 +19151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410994631}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11740558, y: 0.6876763, z: -0.11414656, w: 0.70731026}
+  m_LocalRotation: {x: 0.11740556, y: 0.6876764, z: -0.11414658, w: 0.7073102}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21343,7 +21343,7 @@ Transform:
   m_GameObject: {fileID: 1604026013}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13025177, y: 0.6854864, z: -0.12663619, w: 0.7050576}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.0000019073486, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24428,7 +24428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815121046}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10455462, y: 0.68963397, z: -0.10165233, w: 0.7093238}
+  m_LocalRotation: {x: 0.10455461, y: 0.689634, z: -0.10165235, w: 0.7093237}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25872,6 +25872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedCoins: 0
   timeLeft: 480
+  defaultTime: 480
 --- !u!1 &1950126461 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: edc241e3d5ac70e4d9158d56f4d228cd, type: 3}
@@ -28550,6 +28551,10 @@ PrefabInstance:
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 376572884}
+    - target: {fileID: 1421032338831884338, guid: 0fef9b59f1512a144aad7d7e179f255f, type: 3}
+      propertyPath: _deathScoreText
+      value: 
+      objectReference: {fileID: 1845885401}
     - target: {fileID: 1421032338831884338, guid: 0fef9b59f1512a144aad7d7e179f255f, type: 3}
       propertyPath: _coinCounterText
       value: 

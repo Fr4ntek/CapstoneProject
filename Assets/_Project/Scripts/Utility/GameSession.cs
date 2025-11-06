@@ -6,6 +6,7 @@ public class GameSession : MonoBehaviour
 
     public int collectedCoins = 0;
     public float timeLeft = 0;
+    public float defaultTime = 480;
 
     void Awake()
     {
@@ -25,8 +26,9 @@ public class GameSession : MonoBehaviour
         collectedCoins += amount;
     }
 
-    public void ResetCoins()
+    public void ResetSession()
     {
         collectedCoins = 0;
+        timeLeft = defaultTime;
     }
 }

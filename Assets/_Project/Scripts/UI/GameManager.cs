@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = true;
                 AudioManager.Instance.StopAll();
                 AudioManager.Instance.Play(sceneName);
-                GameSession.Instance.ResetCoins();
+                GameSession.Instance.ResetSession();
                 break;
         }
         DOTween.KillAll();
